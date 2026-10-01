@@ -21,12 +21,15 @@ export default function SafeImage({
 }: SafeImageProps) {
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const isFill = Boolean(props.fill);
 
   if (hasError) {
     return (
       <div
-        className={`relative flex flex-col items-center justify-center bg-[#F8E8EC] border border-[#B76E79]/20 text-[#4A1330] p-6 text-center select-none overflow-hidden ${containerClassName} ${className}`}
-        style={{ minHeight: props.height ? `${props.height}px` : "240px" }}
+        className={`relative flex flex-col items-center justify-center bg-[#F8E8EC] border border-[#B76E79]/20 text-[#4A1330] p-6 text-center select-none overflow-hidden ${
+          isFill ? "w-full h-full min-h-[220px]" : ""
+        } ${containerClassName} ${className}`}
+        style={!isFill && props.height ? { minHeight: `${props.height}px` } : undefined}
       >
         {/* Soft decorative background shimmer / aura */}
         <div className="absolute inset-0 bg-gradient-to-tr from-[#FFF9F5]/60 via-transparent to-[#B76E79]/10 pointer-events-none" />
@@ -54,17 +57,21 @@ export default function SafeImage({
   }
 
   return (
-    <div className={`relative overflow-hidden ${containerClassName}`}>
+    <div
+      className={`relative overflow-hidden ${
+        isFill ? "w-full h-full" : ""
+      } ${containerClassName}`}
+    >
       {/* Subtle skeleton shimmer before load */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-[#F8E8EC] animate-pulse flex items-center justify-center z-0">
-          <Sparkles className="w-6 h-6 text-[#B76E79]/40 animate-spin" style={{ animationDuration: "3s" }} />
+        <div className="absolute inset-0 bg-[#f3ede9] animate-pulse flex items-center justify-center z-0">
+          <Sparkles className="w-5 h-5 text-[#C9A66B]/40 animate-spin" style={{ animationDuration: "3s" }} />
         </div>
       )}
       <Image
         src={src}
         alt={alt}
-        className={`transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"} ${className}`}
+        className={`transition-opacity duration-300 ${isLoaded ? "opacity-100" : "opacity-90"} ${className}`}
         onLoad={() => setIsLoaded(true)}
         onError={() => setHasError(true)}
         {...props}

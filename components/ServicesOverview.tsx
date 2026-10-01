@@ -17,6 +17,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import SafeImage from "./SafeImage";
 import { SERVICE_CATEGORIES, TOTAL_SERVICES } from "@/data/services";
 import { getWhatsAppUrl } from "@/lib/utils";
 
@@ -83,44 +84,41 @@ export default function ServicesOverview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: index * 0.04 }}
-                className={`group relative rounded-[28px] p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between ${
+                className={`group relative rounded-[28px] p-5 sm:p-6 transition-all duration-300 flex flex-col justify-between overflow-hidden ${
                   isDarkSpecial
                     ? "bg-[#2F001B] text-[#FFF9F5] border border-[#C9A66B]/60 shadow-[0_16px_36px_-6px_rgba(47,0,27,0.3)] hover:-translate-y-1.5"
                     : "bg-[#fef8f4] border border-[#C9A66B]/30 hover:border-[#C9A66B]/70 plum-shadow-resting hover:plum-shadow-floating hover:-translate-y-1"
                 }`}
               >
                 <div>
-                  {/* Top Bar: Icon and Count Badge */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div
-                      className={`w-11 h-11 rounded-2xl flex items-center justify-center transition-colors duration-300 ${
-                        isDarkSpecial
-                          ? "bg-[#4A1330] border border-[#C9A66B]/50 text-[#C9A66B]"
-                          : "bg-[#f3ede9] border border-[#B76E79]/20 text-[#4A1330] group-hover:bg-[#4A1330] group-hover:text-[#C9A66B]"
-                      }`}
-                    >
+                  {/* Category Image Header */}
+                  <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden mb-5 bg-[#ede7e3] border border-[#C9A66B]/20">
+                    <SafeImage
+                      src={category.image}
+                      alt={category.name}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+
+                    {/* Floating Category Icon Badge */}
+                    <div className="absolute top-3 left-3 w-10 h-10 rounded-xl backdrop-blur-md bg-[#2F001B]/80 border border-[#C9A66B]/50 flex items-center justify-center text-[#C9A66B] shadow-md">
                       {ICON_MAP[category.iconName] || <Sparkles className="w-5 h-5" />}
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      {category.tag && (
-                        <span
-                          className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
-                            isDarkSpecial
-                              ? "bg-[#4A1330] text-[#C9A66B] border border-[#C9A66B]/40"
-                              : "bg-[#f3ede9] text-[#B76E79] border border-[#B76E79]/20"
-                          }`}
-                        >
+                    {/* Optional Tag Badge */}
+                    {category.tag && (
+                      <div className="absolute top-3 right-3">
+                        <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full backdrop-blur-md bg-[#2F001B]/85 text-[#C9A66B] border border-[#C9A66B]/50 shadow-md">
                           {category.tag}
                         </span>
-                      )}
-                      <span
-                        className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                          isDarkSpecial
-                            ? "bg-[#C9A66B] text-[#2F001B]"
-                            : "bg-[#4A1330] text-[#FFF9F5]"
-                        }`}
-                      >
+                      </div>
+                    )}
+
+                    {/* Service Count Badge */}
+                    <div className="absolute bottom-3 left-3">
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-md bg-[#FFF9F5]/95 text-[#2F001B] shadow-md border border-[#C9A66B]/30">
                         {category.count} Options
                       </span>
                     </div>
@@ -128,7 +126,7 @@ export default function ServicesOverview() {
 
                   {/* Title */}
                   <h3
-                    className={`text-xl font-semibold mb-2.5 ${
+                    className={`text-xl font-semibold mb-2 ${
                       isDarkSpecial
                         ? "text-[#FFF9F5]"
                         : "text-[#4A1330] group-hover:text-[#B76E79] transition-colors"
@@ -139,7 +137,7 @@ export default function ServicesOverview() {
 
                   {/* Description */}
                   <p
-                    className={`text-[14px] leading-[1.65] mb-6 font-normal ${
+                    className={`text-[13.5px] leading-[1.6] mb-5 font-normal ${
                       isDarkSpecial ? "text-[#f5f0ec]/75" : "text-[#7A6470]"
                     }`}
                   >

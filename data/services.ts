@@ -4,6 +4,7 @@ export interface ServiceCategory {
   count: number;
   description: string;
   iconName: string;
+  image: string;
   tag?: string;
 }
 
@@ -24,6 +25,7 @@ export interface AcademyCourse {
   description: string;
   highlights: string[];
   certificate: string;
+  image?: string;
 }
 
 export interface TestimonialItem {
@@ -51,6 +53,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 22,
     description: "Custom precision haircuts, advanced textured styling, refreshing washes, and blowouts tailored to your face shape.",
     iconName: "Scissors",
+    image: "/images/cat-haircut.jpg",
     tag: "Signature",
   },
   {
@@ -59,6 +62,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 7,
     description: "Intense moisture therapies, deep conditioning, and molecular repair treatments for damaged and brittle strands.",
     iconName: "Sparkles",
+    image: "/images/cat-treatment.jpg",
   },
   {
     id: "scalp-treatment",
@@ -66,6 +70,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 5,
     description: "Anti-dandruff solutions, scalp detox, soothing nourishment, and follicle revitalizing therapies.",
     iconName: "Droplets",
+    image: "/images/cat-scalp.jpg",
   },
   {
     id: "hair-repair-smoothening",
@@ -73,6 +78,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 14,
     description: "Keratin, Botox, Nanoplastia, and organic smoothening treatments for silky, frizz-free, luminous hair.",
     iconName: "Feather",
+    image: "/images/cat-smoothening.jpg",
     tag: "Most Popular",
   },
   {
@@ -81,6 +87,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 17,
     description: "Bridal updos, Hollywood waves, contemporary braids, textured curls, and party hairstyle creations.",
     iconName: "Flame",
+    image: "/images/cat-styling.jpg",
   },
   {
     id: "hair-chemical",
@@ -88,6 +95,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 6,
     description: "Global hair color, Balayage, Ombré, Highlights, and root touch-up with ammonia-free premium formulations.",
     iconName: "Palette",
+    image: "/images/cat-color.jpg",
   },
   {
     id: "skin-services",
@@ -95,6 +103,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 23,
     description: "Hydra facials, bridal radiance rituals, anti-aging therapies, D-tan, clean-ups, and glow enhancements.",
     iconName: "HeartPulse",
+    image: "/images/cat-facial.jpg",
     tag: "Essential",
   },
   {
@@ -103,6 +112,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 14,
     description: "Luxury body polishes, relaxing wellness massages, waxing rituals, manicure, and pedicure spa pampering.",
     iconName: "Flower2",
+    image: "/images/cat-spa.jpg",
   },
   {
     id: "makeup",
@@ -110,6 +120,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 19,
     description: "Flawless Bridal, HD, Airbrush, Haldi, Engagement, and Party makeup designed for timeless photography.",
     iconName: "Crown",
+    image: "/images/cat-makeup.jpg",
     tag: "Speciality",
   },
   {
@@ -118,6 +129,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 8,
     description: "Advanced Microblading, Lip Blush, Eyeliner, and BB Glow permanent enhancements by certified artists.",
     iconName: "Gem",
+    image: "/images/cat-pmu.jpg",
     tag: "Advanced Tech",
   },
 ];
@@ -189,6 +201,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Masterclass in Professional Makeup Artistry",
     duration: "1 to 2 Months",
     mode: "Hands-on Practical Studio",
+    image: "/images/gallery-5.jpg",
     description: "Master bridal, HD, airbrush, festive, and editorial makeup techniques under the direct mentorship of Neelam Chourasiya.",
     highlights: [
       "Skin preparation & undertone theory",
@@ -203,6 +216,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Advanced Hair Designing & Chemical Tech",
     duration: "1 Month",
     mode: "Practical Intensive",
+    image: "/images/cat-styling.jpg",
     description: "From classic scissor techniques to trending balayage, keratin infusions, and bridal hair sculpts.",
     highlights: [
       "Face-shape based haircutting techniques",
@@ -217,6 +231,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Clinical Skin Aesthetics & Facial Therapy",
     duration: "3 to 4 Weeks",
     mode: "Theory + Clinical Practice",
+    image: "/images/cat-facial.jpg",
     description: "Scientific skin diagnosis, acne/pigmentation management, high-tech facials, and anti-aging treatments.",
     highlights: [
       "Dermatological skin anatomy & analysis",
@@ -231,6 +246,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Permanent Makeup (PMU) & Microblading",
     duration: "2 to 3 Weeks",
     mode: "Specialized Master Workshop",
+    image: "/images/gallery-3.jpg",
     description: "State-of-the-art semi-permanent cosmetic tattooing including brows, lip blush, and eyeliner artistry.",
     highlights: [
       "Microblading & powder ombré brow mapping",

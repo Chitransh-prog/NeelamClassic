@@ -112,6 +112,19 @@ export default function Academy() {
                 className="rounded-[28px] p-6 sm:p-8 bg-[#370c22]/80 border border-[#C9A66B]/35 hover:border-[#C9A66B]/75 shadow-lg transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
+                  {course.image && (
+                    <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-5 border border-[#C9A66B]/30 bg-[#2F001B]">
+                      <SafeImage
+                        src={course.image}
+                        alt={course.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, 550px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#2F001B]/85 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between gap-2 mb-4">
                     <span className="text-[11px] font-semibold tracking-wider px-3 py-1 rounded-full bg-[#B76E79]/25 text-[#FFF9F5] border border-[#B76E79]/40">
                       {course.duration}

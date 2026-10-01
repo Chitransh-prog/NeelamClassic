@@ -84,11 +84,16 @@ export default function Testimonials() {
 
                 {/* Reviewer Details */}
                 <div className="flex items-center justify-between pt-6 border-t border-[#C9A66B]/20">
-                  <div>
-                    <h4 className="text-base font-semibold text-[#4A1330]">
-                      {review.name}
-                    </h4>
-                    <p className="text-xs text-[#7A6470]">{review.date}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#2F001B] to-[#4A1330] border border-[#C9A66B]/60 flex items-center justify-center text-[#C9A66B] font-semibold text-sm shadow-sm shrink-0">
+                      {review.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h4 className="text-base font-semibold text-[#4A1330]">
+                        {review.name}
+                      </h4>
+                      <p className="text-xs text-[#7A6470]">{review.date}</p>
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-1.5 text-xs text-[#C9A66B] font-semibold">
