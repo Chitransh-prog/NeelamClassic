@@ -221,6 +221,20 @@ export default function EnquiriesPage() {
                             <span>WhatsApp</span>
                           </a>
 
+                          {/* Schedule Booking */}
+                          <Link
+                            href={`/admin/bookings/new?name=${encodeURIComponent(
+                              enq.name
+                            )}&phone=${encodeURIComponent(cleanPhone)}&service=${encodeURIComponent(
+                              enq.service || ""
+                            )}&notes=${encodeURIComponent(enq.message || "")}`}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#FFF9F5] border border-[#C9A66B]/50 text-[#4A1330] hover:bg-[#F8E8EC] font-semibold text-[11px] transition shadow-xs"
+                            title="Schedule Client Appointment"
+                          >
+                            <Calendar className="w-3.5 h-3.5 text-[#B76E79]" />
+                            <span>Schedule</span>
+                          </Link>
+
                           {/* Create Invoice */}
                           <Link
                             href={`/admin/invoices/new?name=${encodeURIComponent(

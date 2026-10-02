@@ -41,24 +41,66 @@ function NewInvoiceContent() {
   const [customerName, setCustomerName] = useState(searchParams.get("name") || "");
   const [customerPhone, setCustomerPhone] = useState(searchParams.get("phone") || "");
   const [customerEmail, setCustomerEmail] = useState("");
-  const [eventDate, setEventDate] = useState("");
-  const [notes, setNotes] = useState("");
+  const [eventDate, setEventDate] = useState(() => {
+    const rawDate = searchParams.get("date");
+    if (rawDate) {
+      try {
+        return new Date(rawDate).toISOString().split("T")[0];
+      } catch {
+        return "";
+      }
+    }
+    return "";
+  });
+  const [notes, setNotes] = useState(() => {
+    const loc = searchParams.get("location");
+    return loc ? `Pickup / Venue Location: ${loc}` : "";
+  });
 
   // Services catalog for quick line-item selection
   const [catalogServices, setCatalogServices] = useState<ServiceItem[]>([]);
   const [catalogSearch, setCatalogSearch] = useState("");
 
-  // Line items state
-  const [items, setItems] = useState<LineItem[]>([
-    { id: "1", description: "Bridal Signature HD Makeup", quantity: 1, rate: 15000, discount: 0 },
-  ]);
+  // Line items state (auto-adds service + distance delivery charges line item!)
+  const [items, setItems] = useState<LineItem[]>(() => {
+    const list: LineItem[] = [];
+    const paramService = searchParams.get("service") || "Bridal Signature HD Makeup";
+    const paramRate = parseFloat(searchParams.get("rate") || "15000") || 15000;
+    const paramDelivery = parseFloat(searchParams.get("delivery") || "0") || 0;
+    const paramDistance = searchParams.get("distance");
+
+    list.push({
+      id: "1",
+      description: paramService,
+      quantity: 1,
+      rate: paramRate,
+      discount: 0,
+    });
+
+    if (paramDelivery > 0) {
+      const distLabel = paramDistance && Number(paramDistance) > 0 ? ` (${paramDistance} km)` : "";
+      list.push({
+        id: "2",
+        description: `Bridal Venue Travel & Delivery Charges${distLabel}`,
+        quantity: 1,
+        rate: paramDelivery,
+        discount: 0,
+      });
+    }
+
+    return list;
+  });
 
   // Invoice discount & tax
   const [discountType, setDiscountType] = useState<"flat" | "percent">("flat");
   const [discountValue, setDiscountValue] = useState<number>(0);
   const [gstEnabled, setGstEnabled] = useState(false);
   const [gstRate, setGstRate] = useState<number>(18);
-  const [advancePaid, setAdvancePaid] = useState<number>(5000);
+  const [advancePaid, setAdvancePaid] = useState<number>(() => {
+    const paramAdvance = searchParams.get("advance");
+    if (paramAdvance !== null) return parseFloat(paramAdvance) || 0;
+    return 5000;
+  });
   const [paymentMode, setPaymentMode] = useState<string>("UPI");
   const [isSubmitting, setIsSubmitting] = useState(false);
 

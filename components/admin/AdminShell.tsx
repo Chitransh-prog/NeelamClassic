@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
+  CalendarCheck,
   Palette,
   Sparkles,
   Images,
@@ -32,6 +33,7 @@ interface AdminShellProps {
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
+  { label: "Bookings & Schedule", href: "/admin/bookings", icon: CalendarCheck },
   { label: "Edit Website", href: "/admin/editor", icon: Palette, highlight: true },
   { label: "Services & Prices", href: "/admin/services", icon: Sparkles },
   { label: "Gallery & Media", href: "/admin/gallery", icon: Images },

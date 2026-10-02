@@ -242,3 +242,34 @@ model Setting {
 
   @@index([key])
 }
+
+model Booking {
+  id             String    @id @default(cuid())
+  bookingNumber  String    @unique
+  clientName     String
+  clientPhone    String
+  clientEmail    String?
+  serviceType    String
+  scheduleDate   DateTime
+  scheduleTime   String?
+  pickupLocation  String?
+  latitude        Float?
+  longitude       Float?
+  distanceKm      Float?    @default(0)
+  deliveryCharges Decimal   @default(0) @db.Decimal(10, 2)
+  serviceAmount   Decimal   @default(0) @db.Decimal(10, 2)
+  status          String    @default("Pending")
+  totalAmount     Decimal   @default(0) @db.Decimal(10, 2)
+  advancePaid     Decimal   @default(0) @db.Decimal(10, 2)
+  balanceDue      Decimal   @default(0) @db.Decimal(10, 2)
+  paymentMode     String?   @default("UPI")
+  notes           String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([status])
+  @@index([clientPhone])
+  @@index([scheduleDate])
+  @@index([bookingNumber])
+}
+

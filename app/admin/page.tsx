@@ -10,6 +10,7 @@ import {
   Clock,
   TrendingUp,
   Plus,
+  CalendarCheck,
   Palette,
   UploadCloud,
   ArrowRight,
@@ -90,6 +91,14 @@ export default function AdminDashboardPage() {
 
           {/* Quick Actions */}
           <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/admin/bookings/new"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#C9A66B] text-[#2F001B] text-xs font-bold hover:opacity-95 transition shadow-sm"
+            >
+              <CalendarCheck className="w-4 h-4 text-[#2F001B]" />
+              <span>Schedule Client</span>
+            </Link>
+
             <Link
               href="/admin/invoices/new"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#FFF9F5] text-[#4A1330] text-xs font-bold hover:bg-white transition shadow-sm"
