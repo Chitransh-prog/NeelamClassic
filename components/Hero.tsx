@@ -7,7 +7,16 @@ import { MessageCircle, Phone, Sparkles, Star, ChevronDown, Award } from "lucide
 import SafeImage from "./SafeImage";
 import { SALON_INFO, getWhatsAppUrl } from "@/lib/utils";
 
-export default function Hero() {
+import { SiteSectionsData } from "@/lib/content";
+
+export default function Hero({ content }: { content?: Partial<SiteSectionsData["hero"]> }) {
+  const badge = content?.badge || "Luxury Salon & Academy";
+  const titleLine1 = content?.titleLine1 || "Timeless Elegance &";
+  const titleHighlight = content?.titleHighlight || "Signature Artistry";
+  const description = content?.description || "Indulge in royal bridal transformations, high-precision permanent makeup (PMU), advanced hair therapies, and master academy training personally curated by Neelam Chourasiya.";
+  const primaryBtnText = content?.primaryBtnText || "Book on WhatsApp";
+  const secondaryBtnText = content?.secondaryBtnText || "Call Now";
+  const heroImage = content?.image || "/images/hero-bride.jpg";
   return (
     <section
       id="hero"
@@ -30,21 +39,20 @@ export default function Hero() {
             {/* Editorial Label */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#4A1330] border border-[#C9A66B]/40 text-[#C9A66B] text-[11px] sm:text-[12px] font-medium tracking-[0.18em] uppercase mb-6 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#B76E79]" />
-              <span>Luxury Salon &amp; Academy</span>
+              <span>{badge}</span>
             </div>
 
             {/* Display Headline */}
             <h1 className="text-[38px] sm:text-[56px] md:text-[68px] lg:text-[72px] font-semibold tracking-[-0.03em] leading-[1.08] text-[#FFF9F5] mb-6">
-              Timeless Elegance &amp;{" "}
+              {titleLine1}{" "}
               <span className="bg-gradient-to-r from-[#B76E79] via-[#e2b988] to-[#C9A66B] bg-clip-text text-transparent">
-                Signature Artistry
+                {titleHighlight}
               </span>
             </h1>
 
             {/* Body Editorial */}
             <p className="text-[16px] sm:text-[17px] text-[#f5f0ec]/85 max-w-xl mb-10 leading-[1.7] font-normal">
-              Indulge in royal bridal transformations, high-precision permanent makeup (PMU), advanced hair therapies, and master academy training personally curated by{" "}
-              <strong className="text-[#FFF9F5] font-semibold">{SALON_INFO.owner}</strong>.
+              {description}
             </p>
 
             {/* Two Action Buttons */}
@@ -56,7 +64,7 @@ export default function Hero() {
                 className="btn-rose-gold w-full sm:w-auto inline-flex items-center justify-center gap-2.5"
               >
                 <MessageCircle className="w-4 h-4 text-[#FFF9F5]" />
-                <span>Book on WhatsApp</span>
+                <span>{primaryBtnText}</span>
               </a>
 
               <a
@@ -91,7 +99,7 @@ export default function Hero() {
               <div className="relative vanity-arch p-2.5 bg-[#4A1330]/90 border-[1.5px] border-[#C9A66B] shadow-[0_24px_50px_-10px_rgba(0,0,0,0.5)] overflow-hidden">
                 <div className="relative aspect-[4/5] w-full vanity-arch overflow-hidden bg-[#370c22]">
                   <SafeImage
-                    src="/images/hero.jpg"
+                    src={heroImage}
                     alt="Royal Bridal Makeup by Neelam Classic Salon"
                     placeholderTitle="Royal Bridal Glamour"
                     fill

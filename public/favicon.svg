@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="plumGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#5E193E" />
+      <stop offset="70%" stop-color="#4A1330" />
+      <stop offset="100%" stop-color="#2F001B" />
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DFBF86" />
+      <stop offset="45%" stop-color="#C9A66B" />
+      <stop offset="75%" stop-color="#EED5A5" />
+      <stop offset="100%" stop-color="#9C783E" />
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Outer Ring Background -->
+  <circle cx="64" cy="64" r="62" fill="url(#plumGrad)" />
+  <circle cx="64" cy="64" r="59" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" />
+  <circle cx="64" cy="64" r="55" fill="none" stroke="url(#goldGrad)" stroke-width="0.75" stroke-dasharray="2 3" opacity="0.6" />
+
+  <!-- Monogram NC -->
+  <g filter="url(#goldGlow)" fill="url(#goldGrad)" font-family="'Poppins', 'Cinzel', 'Playfair Display', serif" font-weight="700">
+    <text x="44" y="78" font-size="44" text-anchor="middle" letter-spacing="-1">N</text>
+    <text x="82" y="78" font-size="44" text-anchor="middle" letter-spacing="-1">C</text>
+  </g>
+
+  <!-- Sparkle Accent -->
+  <path d="M96 32 Q96 42 106 42 Q96 42 96 52 Q96 42 86 42 Q96 42 96 32 Z" fill="url(#goldGrad)" />
+  <circle cx="96" cy="42" r="1.5" fill="#FFF9F5" />
+</svg>

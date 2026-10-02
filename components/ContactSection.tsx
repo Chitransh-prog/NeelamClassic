@@ -25,16 +25,43 @@ export default function ContactSection() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [hpField, setHpField] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const formattedMsg = `Hello Neelam Classic Salon & Academy!
 My Name: ${formData.name.trim() || "Guest"}
 Contact Number: ${formData.phone.trim() || "Not provided"}
 Interested Service: ${formData.service}
 Message / Preferred Date: ${formData.message.trim() || "I would like to book a consultation."}`;
 
+    // 1. Save enquiry in database asynchronously
+    try {
+      await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+          hp_field: hpField,
+        }),
+      });
+    } catch {
+      // Don't block WhatsApp redirection if API fails
+    }
+
+    // 2. Open WhatsApp with prefilled message
     const url = getWhatsAppUrl(formattedMsg);
     window.open(url, "_blank");
+
+    setIsSubmitting(false);
+    setSubmitted(true);
   };
 
   return (
@@ -128,6 +155,17 @@ Message / Preferred Date: ${formData.message.trim() || "I would like to book a c
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot field (hidden for human users) */}
+                <input
+                  type="text"
+                  name="hp_field"
+                  value={hpField}
+                  onChange={(e) => setHpField(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ display: "none", position: "absolute", left: "-9999px" }}
+                  aria-hidden="true"
+                />
                 <div>
                   <label
                     htmlFor="client-name"

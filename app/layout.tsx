@@ -23,8 +23,15 @@ export const metadata: Metadata = {
   description:
     "Experience 135+ premium beauty services, bespoke bridal makeups, permanent makeup (PMU), advanced hair treatments, and professional beauty academy training by Neelam Chourasiya.",
   icons: {
-    icon: "/images/logo.png",
-    apple: "/images/logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   keywords: [
     "Neelam Classic Salon",
