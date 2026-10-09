@@ -8,11 +8,7 @@ import {
   Plus,
   Trash2,
   ArrowLeft,
-  Search,
-  Sparkles,
-  Receipt,
   Save,
-  CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { numberToIndianWords } from "@/lib/number-to-words";
@@ -59,7 +55,6 @@ function NewInvoiceContent() {
 
   // Services catalog for quick line-item selection
   const [catalogServices, setCatalogServices] = useState<ServiceItem[]>([]);
-  const [catalogSearch, setCatalogSearch] = useState("");
 
   // Line items state (auto-adds service + distance delivery charges line item!)
   const [items, setItems] = useState<LineItem[]>(() => {
@@ -374,7 +369,7 @@ function NewInvoiceContent() {
                           }}
                           className="w-36 px-2 py-2 text-[11px] rounded-xl bg-white border border-[#F8E8EC] text-[#7A6470] outline-none cursor-pointer"
                         >
-                          <option value="">⚡ Pick service...</option>
+                          <option value="">Pick service...</option>
                           {catalogServices.map((s) => (
                             <option key={s.id} value={s.id}>
                               {s.name} (₹{s.price || 0})

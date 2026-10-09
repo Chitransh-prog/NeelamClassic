@@ -1,226 +1,280 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, MessageCircle, Crown, Heart, Check, Clock } from "lucide-react";
-import SectionHeading from "./SectionHeading";
-import SafeImage from "./SafeImage";
-import { MAKEUP_PRICING, MakeupServiceItem } from "@/data/services";
-import { getWhatsAppUrl } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { MessageCircle, Check, Phone, Sparkles, ChevronDown } from "lucide-react";
+import { getWhatsAppUrl, SALON_INFO } from "@/lib/utils";
+import { openBookingModal } from "@/components/ServiceBookingModal";
 
-type TabKey = "basic" | "party" | "bridal" | "permanent";
-
-interface TabOption {
-  key: TabKey;
-  label: string;
-  badge?: string;
+interface TariffItem {
+  name: string;
+  price: string;
+  priceNum: number;
+  description: string;
 }
 
-const TABS: TabOption[] = [
-  { key: "basic", label: "Basic Makeup" },
-  { key: "party", label: "Party Makeup", badge: "Trending" },
-  { key: "bridal", label: "Bridal Makeup", badge: "Signature" },
-  { key: "permanent", label: "Permanent (PMU)", badge: "Advanced" },
+interface TariffGroup {
+  id: string;
+  title: string;
+  tag: string;
+  items: TariffItem[];
+}
+
+const TARIFF_GROUPS: TariffGroup[] = [
+  {
+    id: "bridal",
+    title: "ROYAL BRIDAL TRANSFORMATION",
+    tag: "SIGNATURE SUITE",
+    items: [
+      {
+        name: "Signature HD Bridal Makeup",
+        price: "₹15,000",
+        priceNum: 15000,
+        description: "Micro-pigment base, luxury lashes, customized draping, and 12-hour couture setting.",
+      },
+      {
+        name: "Airbrush Bridal Artistry",
+        price: "₹18,000",
+        priceNum: 18000,
+        description: "Silicone-based micro-atomized finish for flawless high-definition cameras & studio lighting.",
+      },
+      {
+        name: "Engagement / Reception Glamour",
+        price: "₹8,000",
+        priceNum: 8000,
+        description: "Elevated couture styling, modern hair artistry, and skin radiance base.",
+      },
+      {
+        name: "Pre-Bridal Glow Package (4 Sessions)",
+        price: "₹12,000",
+        priceNum: 12000,
+        description: "Full body polishing, derma hydra-facials, and skin brightening therapies.",
+      },
+    ],
+  },
+  {
+    id: "pmu",
+    title: "PERMANENT MAKEUP PROTOCOLS",
+    tag: "CLINICAL GRADE",
+    items: [
+      {
+        name: "Ombre Powder Eyebrows",
+        price: "₹10,000",
+        priceNum: 10000,
+        description: "Micro-pixel shading for soft, defined brows lasting 2-3 years with organic pigments.",
+      },
+      {
+        name: "Microblading Feather Brows",
+        price: "₹12,000",
+        priceNum: 12000,
+        description: "Ultra-fine medical-grade nano strokes mimicking natural brow hair patterns.",
+      },
+      {
+        name: "Permanent Lip Blush & Neutralization",
+        price: "₹8,000",
+        priceNum: 8000,
+        description: "Tone-correcting botanical pigment wash for youthful, naturally tinted, hydrated lips.",
+      },
+    ],
+  },
+  {
+    id: "hair",
+    title: "ADVANCED HAIR TRICHOLOGY",
+    tag: "SALON EXCLUSIVE",
+    items: [
+      {
+        name: "Nanoplastia Repair Treatment",
+        price: "₹6,000",
+        priceNum: 6000,
+        description: "Formaldehyde-free organic amino acid restructuring and intense mirror gloss.",
+      },
+      {
+        name: "Brazilian Keratin Smoothing",
+        price: "₹4,500",
+        priceNum: 4500,
+        description: "Deep frizz elimination, split-end repair, and long-lasting thermal cuticle sealing.",
+      },
+      {
+        name: "Hair Botox Deep Revival",
+        price: "₹3,500",
+        priceNum: 3500,
+        description: "Caviar protein & hyaluronic acid infusion for brittle, chemically damaged hair.",
+      },
+    ],
+  },
 ];
 
 export default function MakeupPricing() {
-  const [activeTab, setActiveTab] = useState<TabKey>("bridal");
+  const [openGroup, setOpenGroup] = useState<string>("bridal");
 
-  const currentCategory = MAKEUP_PRICING[activeTab];
+  const toggleGroup = (id: string) => {
+    setOpenGroup(openGroup === id ? "" : id);
+  };
 
   return (
-    <section id="makeup" className="py-24 sm:py-28 bg-[#fef8f4] relative overflow-hidden">
-      {/* Decorative aura */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 rounded-full bg-[#B76E79]/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-[#C9A66B]/10 blur-3xl pointer-events-none" />
-
+    <section id="pricing" className="py-24 sm:py-28 bg-[#fef8f4] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <SectionHeading
-          badge="Transparent Menu"
-          title="Makeup & PMU Price List"
-          subtitle="Explore our transparent pricing curated with authentic, luxury cosmetic formulations. Click any service to book directly on WhatsApp."
-        />
+        {/* Section Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F8E8EC] border border-[#B76E79]/30 text-[#B76E79] text-[11px] sm:text-[12px] font-medium tracking-[0.18em] uppercase mb-4 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A66B]" />
+            <span>BESPOKE SERVICE TARIFFS</span>
+          </div>
+          <h2 className="text-[32px] sm:text-[44px] md:text-[48px] font-serif font-semibold text-[#4A1330] leading-[1.16] tracking-normal sm:tracking-[-0.01em]">
+            Haute Couture Menu &amp; Tariffs
+          </h2>
+          <p className="text-[15px] sm:text-[16px] text-[#7A6470] mt-3 leading-relaxed">
+            Transparent, elevated investment tiers for bridal, cosmetological, and clinical PMU services.
+          </p>
+        </div>
 
-        {/* Tab Navigation Pill Bar */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex p-1.5 rounded-full bg-[#f3ede9] border border-[#C9A66B]/35 shadow-inner overflow-x-auto max-w-full">
-            {TABS.map((tab) => {
-              const isActive = activeTab === tab.key;
+        {/* 2-Column Layout: Tariffs Accordions on Left, Concierge Card on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          
+          {/* Left Column (8 cols): Groups */}
+          <div className="lg:col-span-8 space-y-5">
+            {TARIFF_GROUPS.map((group) => {
+              const isOpen = openGroup === group.id;
+
               return (
-                <button
-                  key={tab.key}
-                  type="button"
-                  onClick={() => setActiveTab(tab.key)}
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-controls={`panel-${tab.key}`}
-                  id={`tab-${tab.key}`}
-                  className={`relative px-5 sm:px-7 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 whitespace-nowrap focus:outline-none ${
-                    isActive
-                      ? "text-[#FFF9F5] shadow-md"
-                      : "text-[#7A6470] hover:text-[#4A1330] hover:bg-[#fef8f4]/60"
-                  }`}
+                <div
+                  key={group.id}
+                  className="rounded-3xl bg-white border border-[#F8E8EC] overflow-hidden shadow-xs transition-all"
                 >
-                  {isActive && (
+                  {/* Group Header */}
+                  <button
+                    type="button"
+                    onClick={() => toggleGroup(group.id)}
+                    className="w-full p-5 sm:p-6 flex items-center justify-between text-left hover:bg-[#FFF9F5] transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Sparkles className="w-4 h-4 text-[#C9A66B] shrink-0" />
+                      <h3 className="text-sm sm:text-base font-semibold tracking-wider text-[#4A1330] uppercase">
+                        {group.title}
+                      </h3>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#F8E8EC] text-[#B76E79] border border-[#B76E79]/30">
+                        {group.tag}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-[#7A6470] transition-transform duration-300 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </div>
+                  </button>
+
+                  {/* Group Items */}
+                  {isOpen && (
                     <motion.div
-                      layoutId="activeTabPill"
-                      className="absolute inset-0 bg-[#2F001B] rounded-full"
-                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                    />
-                  )}
-                  <span className="relative z-10">{tab.label}</span>
-                  {tab.badge && (
-                    <span
-                      className={`relative z-10 text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                        isActive
-                          ? "bg-[#C9A66B] text-[#2F001B] font-bold"
-                          : "bg-[#fef8f4] text-[#B76E79] border border-[#B76E79]/30"
-                      }`}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="px-5 pb-5 sm:px-6 sm:pb-6 divide-y divide-[#F8E8EC] border-t border-[#F8E8EC]"
                     >
-                      {tab.badge}
-                    </span>
+                      {group.items.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="py-4 first:pt-4 last:pb-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group"
+                        >
+                          <div className="space-y-1 flex-1 pr-4">
+                            <div className="text-sm font-semibold text-[#2B1B24] group-hover:text-[#B76E79] transition-colors">
+                              {item.name}
+                            </div>
+                            <div className="text-xs text-[#7A6470] leading-relaxed">
+                              {item.description}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-3 self-end sm:self-center shrink-0">
+                            <span className="text-sm sm:text-base font-serif font-semibold text-[#4A1330]">
+                              {item.price}
+                            </span>
+
+                            <button
+                              type="button"
+                              onClick={() =>
+                                openBookingModal({
+                                  serviceName: item.name,
+                                  servicePrice: item.price,
+                                  categoryName: group.title,
+                                })
+                              }
+                              className="px-4 py-1.5 rounded-full bg-[#4A1330] hover:bg-[#2F001B] text-[#FFF9F5] text-[11px] font-semibold tracking-wider transition-all hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
+                            >
+                              Book
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
                   )}
-                </button>
+                </div>
               );
             })}
           </div>
-        </div>
 
-        {/* Two-Column Editorial Layout: Ledger on Left, Vanity Arch Photo on Right */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            id={`panel-${activeTab}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${activeTab}`}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start"
-          >
-            {/* Left Ledger Column */}
-            <div className="lg:col-span-7 rounded-[28px] border border-[#C9A66B]/35 bg-[#fef8f4] p-6 sm:p-8 plum-shadow-resting">
-              <div className="border-b border-[#C9A66B]/30 pb-4 mb-6">
-                <h3 className="text-xl sm:text-2xl font-semibold text-[#4A1330]">
-                  {currentCategory.title}
+          {/* Right Column (4 cols): Concierge Plum Card */}
+          <div className="lg:col-span-4">
+            <div className="sticky top-28 rounded-3xl bg-[#2F001B] text-[#FFF9F5] border border-[#C9A66B]/40 p-6 sm:p-7 shadow-[0_20px_45px_-10px_rgba(47,0,27,0.35)] space-y-6">
+              
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A66B] mb-2">
+                  BESPOKE CONCIERGE
+                </div>
+                <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[#FFF9F5] mb-3">
+                  Neelam Atelier Concierge
                 </h3>
-                <p className="text-xs sm:text-sm text-[#7A6470] mt-1 font-normal">
-                  {currentCategory.subtitle}
+                <p className="text-xs sm:text-[13px] text-[#f5f0ec]/80 leading-relaxed">
+                  Custom bridal suites and multi-day trousseau packages tailored to your wedding itinerary. Dedicated consultations with Master Neelam.
                 </p>
               </div>
 
-              {/* Price Rows */}
-              <div className="divide-y divide-[#C9A66B]/20">
-                {currentCategory.items.map((item: MakeupServiceItem) => {
-                  const bookMsg = `Hi Neelam Classic Salon, I would like to book an appointment for "${item.name}" (${item.price}).`;
-                  const bookUrl = getWhatsAppUrl(bookMsg);
-
-                  return (
-                    <div
-                      key={item.id}
-                      className="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[#f3ede9]/50 px-3 rounded-2xl transition-colors group"
-                    >
-                      <div className="flex-1 pr-0 sm:pr-4">
-                        <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <span className="text-base font-semibold text-[#4A1330] group-hover:text-[#B76E79] transition-colors">
-                            {item.name}
-                          </span>
-                          {item.popular && (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#C9A66B]/20 text-[#2F001B] border border-[#C9A66B]/60">
-                              <Sparkles className="w-3 h-3 text-[#C9A66B]" />
-                              Signature
-                            </span>
-                          )}
-                        </div>
-                        {item.description && (
-                          <p className="text-xs text-[#7A6470] font-normal leading-relaxed">
-                            {item.description}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Price & Book Button */}
-                      <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 pt-2 sm:pt-0">
-                        <span className="text-base sm:text-lg font-bold text-[#4A1330]">
-                          {item.price}
-                        </span>
-
-                        <a
-                          href={bookUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#B76E79] hover:bg-[#a65f6b] text-[#FFF9F5] text-xs font-semibold tracking-wider transition-all hover:scale-105 active:scale-95 shadow-sm"
-                          aria-label={`Book ${item.name} on WhatsApp`}
-                        >
-                          <MessageCircle className="w-3.5 h-3.5" />
-                          <span>Book</span>
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Custom Packages Footer */}
-              <div className="mt-6 p-4 rounded-2xl bg-[#f3ede9] border border-[#C9A66B]/30 text-xs text-[#7A6470] flex items-center justify-between flex-wrap gap-2">
-                <span>
-                  <strong className="text-[#4A1330]">Custom Packages:</strong> Bridal trials &amp; family packages available on consultation.
-                </span>
-                <a
-                  href={getWhatsAppUrl("Hi Neelam Classic, I'd like to enquire about custom bridal packages.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-semibold text-[#B76E79] hover:underline"
-                >
-                  Ask on WhatsApp &rarr;
-                </a>
-              </div>
-            </div>
-
-            {/* Right Architectural Portrait Column */}
-            <div className="lg:col-span-5 flex flex-col items-center">
-              <div className="relative w-full max-w-[340px] sm:max-w-[380px]">
-                {/* Halo */}
-                <div className="absolute -inset-3 vanity-arch bg-gradient-to-tr from-[#B76E79]/20 via-[#C9A66B]/25 to-transparent blur-md pointer-events-none" />
-
-                <div className="relative vanity-arch p-2 bg-[#fef8f4] border-[1.5px] border-[#C9A66B]/70 shadow-[0_18px_40px_-8px_rgba(74,19,48,0.16)] overflow-hidden">
-                  <div className="relative aspect-[4/5] w-full vanity-arch overflow-hidden bg-[#f3ede9]">
-                    <SafeImage
-                      src="/images/gallery-1.jpg"
-                      alt="Bridal Makeup showcase"
-                      placeholderTitle="Bridal Glamour"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 400px"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  {/* Floating Action Card */}
-                  <div className="p-4 bg-[#2F001B] text-[#FFF9F5] rounded-2xl mt-2 border border-[#C9A66B]/40 text-center">
-                    <h4 className="text-sm font-semibold tracking-wide text-[#FFF9F5]">
-                      Experience Haute Couture Bridal Glamour
-                    </h4>
-                    <p className="text-[11px] text-[#f5f0ec]/75 mt-0.5 mb-3">
-                      Personally styled by Neelam Chourasiya
-                    </p>
-                    <a
-                      href={getWhatsAppUrl("Hi Neelam Classic, I would like to book a bridal consultation.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-full bg-[#B76E79] hover:bg-[#a65f6b] text-[#FFF9F5] text-xs font-semibold tracking-wider transition-all"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>Book Consultation</span>
-                    </a>
-                  </div>
+              {/* Checkmark List */}
+              <div className="space-y-3 pt-2 border-t border-[#C9A66B]/25">
+                <div className="flex items-start gap-2.5 text-xs text-[#f5f0ec]/90">
+                  <Check className="w-4 h-4 text-[#C9A66B] shrink-0 mt-0.5" />
+                  <span>Multi-event bridal packages (Haldi, Mehendi, Sangeet, Wedding)</span>
+                </div>
+                <div className="flex items-start gap-2.5 text-xs text-[#f5f0ec]/90">
+                  <Check className="w-4 h-4 text-[#C9A66B] shrink-0 mt-0.5" />
+                  <span>On-location vanity setup across Madhya Pradesh</span>
+                </div>
+                <div className="flex items-start gap-2.5 text-xs text-[#f5f0ec]/90">
+                  <Check className="w-4 h-4 text-[#C9A66B] shrink-0 mt-0.5" />
+                  <span>Complimentary touch-up concierge and veil setting</span>
                 </div>
               </div>
-            </div>
 
-          </motion.div>
-        </AnimatePresence>
+              {/* Action Buttons */}
+              <div className="space-y-2.5 pt-4">
+                <a
+                  href={getWhatsAppUrl("Hi Neelam Classic Atelier, I would like to request a bespoke bridal trousseau consultation.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-[#FFF9F5] text-xs font-semibold tracking-wider transition-all shadow-md hover:scale-102"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#FFF9F5]" />
+                  <span>WhatsApp Concierge</span>
+                </a>
+
+                <a
+                  href={`tel:${SALON_INFO.phone}`}
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-transparent hover:bg-white/10 text-[#FFF9F5] border border-[#C9A66B]/60 text-xs font-semibold tracking-wider transition-all"
+                >
+                  <Phone className="w-4 h-4 text-[#C9A66B]" />
+                  <span>CALL ATELIER</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
 
       </div>
     </section>

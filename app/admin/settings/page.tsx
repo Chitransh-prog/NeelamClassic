@@ -1,20 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-  Settings,
-  Phone,
-  MessageCircle,
-  Clock,
-  Globe,
-  Receipt,
-  ShieldCheck,
-  Save,
-  Lock,
-  Mail,
-  LogOut,
-  CheckCircle,
-} from "lucide-react";
+import { Save } from "lucide-react";
 import { toast } from "sonner";
 
 export default function SettingsPage() {
@@ -168,7 +155,7 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#4A1330]">
+        <h1 className="text-2xl font-serif font-semibold tracking-tight text-[#4A1330]">
           Salon Settings &amp; Configuration
         </h1>
         <p className="text-xs text-[#7A6470] mt-1">
@@ -180,9 +167,9 @@ export default function SettingsPage() {
       <div className="flex items-center gap-2 border-b border-[#F8E8EC] pb-2">
         <button
           onClick={() => setActiveTab("business")}
-          className={`px-4 py-2 rounded-xl text-xs font-semibold transition ${
+          className={`px-4 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer ${
             activeTab === "business"
-              ? "bg-[#4A1330] text-[#FFF9F5] shadow-sm"
+              ? "bg-[#4A1330] text-[#FFF9F5] shadow-xs"
               : "text-[#7A6470] hover:text-[#4A1330] hover:bg-white"
           }`}
         >
@@ -190,9 +177,9 @@ export default function SettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("invoice")}
-          className={`px-4 py-2 rounded-xl text-xs font-semibold transition ${
+          className={`px-4 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer ${
             activeTab === "invoice"
-              ? "bg-[#4A1330] text-[#FFF9F5] shadow-sm"
+              ? "bg-[#4A1330] text-[#FFF9F5] shadow-xs"
               : "text-[#7A6470] hover:text-[#4A1330] hover:bg-white"
           }`}
         >
@@ -200,9 +187,9 @@ export default function SettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("security")}
-          className={`px-4 py-2 rounded-xl text-xs font-semibold transition ${
+          className={`px-4 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer ${
             activeTab === "security"
-              ? "bg-[#4A1330] text-[#FFF9F5] shadow-sm"
+              ? "bg-[#4A1330] text-[#FFF9F5] shadow-xs"
               : "text-[#7A6470] hover:text-[#4A1330] hover:bg-white"
           }`}
         >

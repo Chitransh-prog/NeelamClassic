@@ -3,15 +3,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
-  Inbox,
   Search,
   MessageCircle,
   Receipt,
   Trash2,
   Calendar,
-  Phone,
-  Filter,
-  CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -62,6 +58,7 @@ export default function EnquiriesPage() {
 
   useEffect(() => {
     loadEnquiries();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusFilter, searchQuery]);
 
   const updateStatus = async (id: string, newStatus: string) => {
@@ -97,7 +94,7 @@ export default function EnquiriesPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#4A1330]">
+        <h1 className="text-2xl font-serif font-semibold tracking-tight text-[#4A1330]">
           Client Enquiries &amp; Bookings
         </h1>
         <p className="text-xs text-[#7A6470] mt-1">

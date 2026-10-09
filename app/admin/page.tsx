@@ -15,6 +15,9 @@ import {
   UploadCloud,
   ArrowRight,
   Eye,
+  Calendar,
+  MapPin,
+  MessageCircle,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -33,6 +36,8 @@ interface DashboardData {
     pendingPayments: number;
     totalCustomers: number;
     newEnquiries: number;
+    pendingBookings?: number;
+    totalBookings?: number;
   };
   revenueChart: Array<{ month: string; revenue: number }>;
   recentInvoices: Array<{
@@ -43,6 +48,18 @@ interface DashboardData {
     status: string;
     createdAt: string;
     customer: { name: string; phone: string };
+  }>;
+  upcomingBookings?: Array<{
+    id: string;
+    bookingNumber: string;
+    clientName: string;
+    clientPhone: string;
+    serviceType: string;
+    scheduleDate: string;
+    scheduleTime?: string | null;
+    pickupLocation?: string | null;
+    status: string;
+    totalAmount: number;
   }>;
 }
 
@@ -77,11 +94,11 @@ export default function AdminDashboardPage() {
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#C9A66B] text-[11px] font-semibold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-[#C9A66B] text-[11px] font-semibold uppercase tracking-wider mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#B76E79]" />
               <span>Salon &amp; Academy Management</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#FFF9F5]">
+            <h1 className="text-2xl sm:text-3xl font-serif font-semibold tracking-tight text-[#FFF9F5]">
               Welcome, Neelam Chourasiya
             </h1>
             <p className="text-xs sm:text-sm text-[#F8E8EC]/80 mt-1 max-w-xl">
@@ -90,36 +107,36 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
             <Link
               href="/admin/bookings/new"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#C9A66B] text-[#2F001B] text-xs font-bold hover:opacity-95 transition shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A66B] hover:bg-[#b8955a] text-[#2F001B] text-xs font-semibold tracking-wide transition shadow-xs"
             >
-              <CalendarCheck className="w-4 h-4 text-[#2F001B]" />
+              <CalendarCheck className="w-3.5 h-3.5 text-[#2F001B]" />
               <span>Schedule Client</span>
             </Link>
 
             <Link
               href="/admin/invoices/new"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#FFF9F5] text-[#4A1330] text-xs font-bold hover:bg-white transition shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF9F5] hover:bg-white text-[#4A1330] text-xs font-semibold tracking-wide transition shadow-xs"
             >
-              <Plus className="w-4 h-4 text-[#B76E79]" />
+              <Plus className="w-3.5 h-3.5 text-[#B76E79]" />
               <span>New Invoice</span>
             </Link>
 
             <Link
               href="/admin/editor"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-[#FFF9F5] border border-white/20 text-xs font-semibold transition"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FFF9F5] border border-white/20 text-xs font-semibold tracking-wide transition"
             >
-              <Palette className="w-4 h-4 text-[#C9A66B]" />
+              <Palette className="w-3.5 h-3.5 text-[#C9A66B]" />
               <span>Edit Website</span>
             </Link>
 
             <Link
               href="/admin/gallery"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-[#FFF9F5] border border-white/20 text-xs font-semibold transition"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FFF9F5] border border-white/20 text-xs font-semibold tracking-wide transition"
             >
-              <UploadCloud className="w-4 h-4 text-[#B76E79]" />
+              <UploadCloud className="w-3.5 h-3.5 text-[#B76E79]" />
               <span>Add Photo</span>
             </Link>
           </div>
@@ -127,66 +144,84 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* KPI Cards Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-6 gap-3.5 sm:gap-4">
         {/* Invoices This Month */}
-        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-5 shadow-xs">
+        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-4 sm:p-5 shadow-xs">
           <div className="flex items-center justify-between text-[#7A6470] mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Invoices MTD</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider">Invoices MTD</span>
             <Receipt className="w-4 h-4 text-[#B76E79]" />
           </div>
-          <div className="text-2xl font-bold text-[#4A1330]">
+          <div className="text-xl sm:text-2xl font-bold text-[#4A1330]">
             {data.cards.invoicesThisMonth}
           </div>
-          <div className="text-[10px] text-[#7A6470] mt-1">This calendar month</div>
+          <div className="text-[10px] text-[#7A6470] mt-1">Calendar month</div>
         </div>
 
         {/* Revenue This Month */}
-        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-5 shadow-xs">
+        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-4 sm:p-5 shadow-xs">
           <div className="flex items-center justify-between text-[#7A6470] mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Revenue MTD</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider">Revenue MTD</span>
             <IndianRupee className="w-4 h-4 text-emerald-600" />
           </div>
-          <div className="text-2xl font-bold text-emerald-700">
+          <div className="text-xl sm:text-2xl font-bold text-emerald-700">
             ₹{data.cards.revenueThisMonth.toLocaleString("en-IN")}
           </div>
           <div className="text-[10px] text-[#7A6470] mt-1">Total billed value</div>
         </div>
 
         {/* Pending Payments */}
-        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-5 shadow-xs">
+        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-4 sm:p-5 shadow-xs">
           <div className="flex items-center justify-between text-[#7A6470] mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Balance Due</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider">Balance Due</span>
             <Clock className="w-4 h-4 text-[#B76E79]" />
           </div>
-          <div className="text-2xl font-bold text-[#B76E79]">
+          <div className="text-xl sm:text-2xl font-bold text-[#B76E79]">
             ₹{data.cards.pendingPayments.toLocaleString("en-IN")}
           </div>
-          <div className="text-[10px] text-[#7A6470] mt-1">Outstanding receivables</div>
+          <div className="text-[10px] text-[#7A6470] mt-1">Receivables due</div>
         </div>
 
+        {/* Pending Appointments */}
+        <Link
+          href="/admin/bookings?status=Pending"
+          className="bg-white rounded-2xl border border-[#F8E8EC] p-4 sm:p-5 shadow-xs hover:border-amber-400 transition block group"
+        >
+          <div className="flex items-center justify-between text-amber-600 mb-2">
+            <span className="text-[10px] font-semibold uppercase tracking-wider group-hover:text-amber-700">Pending Bookings</span>
+            <CalendarCheck className="w-4 h-4 text-amber-600" />
+          </div>
+          <div className="text-xl sm:text-2xl font-bold text-amber-700">
+            {data.cards.pendingBookings ?? 0}
+          </div>
+          <div className="text-[10px] text-amber-600/80 mt-1">Click to confirm &rarr;</div>
+        </Link>
+
         {/* Total Customers */}
-        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-5 shadow-xs">
+        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-4 sm:p-5 shadow-xs">
           <div className="flex items-center justify-between text-[#7A6470] mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Customers</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider">Customers</span>
             <Users className="w-4 h-4 text-[#C9A66B]" />
           </div>
-          <div className="text-2xl font-bold text-[#4A1330]">
+          <div className="text-xl sm:text-2xl font-bold text-[#4A1330]">
             {data.cards.totalCustomers}
           </div>
           <div className="text-[10px] text-[#7A6470] mt-1">Registered clients</div>
         </div>
 
         {/* New Enquiries */}
-        <div className="bg-white rounded-2xl border border-[#F8E8EC] p-5 shadow-xs col-span-2 sm:col-span-1">
-          <div className="flex items-center justify-between text-[#7A6470] mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">New Enquiries</span>
+        <Link
+          href="/admin/enquiries"
+          className="bg-white rounded-2xl border border-[#F8E8EC] p-4 sm:p-5 shadow-xs hover:border-blue-400 transition block group col-span-2 sm:col-span-1"
+        >
+          <div className="flex items-center justify-between text-blue-600 mb-2">
+            <span className="text-[10px] font-semibold uppercase tracking-wider group-hover:text-blue-700">New Enquiries</span>
             <Inbox className="w-4 h-4 text-blue-600" />
           </div>
-          <div className="text-2xl font-bold text-blue-700">
+          <div className="text-xl sm:text-2xl font-bold text-blue-700">
             {data.cards.newEnquiries}
           </div>
-          <div className="text-[10px] text-[#7A6470] mt-1">Pending WhatsApp follow-up</div>
-        </div>
+          <div className="text-[10px] text-[#7A6470] mt-1">Enquiry inbox</div>
+        </Link>
       </div>
 
       {/* 6-Month Revenue Trend Chart */}
@@ -240,6 +275,106 @@ export default function AdminDashboardPage() {
             </AreaChart>
           </ResponsiveContainer>
         </div>
+      </div>
+
+      {/* Upcoming Scheduled Appointments Section */}
+      <div className="bg-white rounded-3xl border border-[#F8E8EC] p-6 sm:p-7 shadow-xs space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-base font-bold text-[#4A1330]">Upcoming Client Appointments</h2>
+            <p className="text-xs text-[#7A6470]">Online bookings, bridal visits &amp; scheduled appointments</p>
+          </div>
+          <Link
+            href="/admin/bookings"
+            className="text-xs font-semibold text-[#B76E79] hover:text-[#4A1330] inline-flex items-center gap-1 transition"
+          >
+            <span>Manage All Bookings</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {!data.upcomingBookings || data.upcomingBookings.length === 0 ? (
+          <div className="py-8 text-center text-xs text-[#7A6470] space-y-2">
+            <div>No upcoming appointments scheduled right now.</div>
+            <Link
+              href="/admin/bookings/new"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#4A1330] text-white text-xs font-semibold"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              <span>Schedule New Appointment</span>
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            {data.upcomingBookings.map((b) => {
+              const dateStr = new Date(b.scheduleDate).toLocaleDateString("en-IN", {
+                weekday: "short",
+                day: "numeric",
+                month: "short",
+              });
+              const whatsappMsg = `Namaste ${b.clientName}! Greetings from Neelam Classic Salon. Confirming your appointment for ${b.serviceType} on ${dateStr} at ${b.scheduleTime || "11:00 AM"}.`;
+              const waUrl = `https://wa.me/91${b.clientPhone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(whatsappMsg)}`;
+
+              return (
+                <div
+                  key={b.id}
+                  className="p-4 rounded-2xl bg-[#FFF9F5] border border-[#F8E8EC] hover:border-[#B76E79]/40 transition space-y-2.5 text-xs"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[11px] font-bold text-[#C9A66B]">
+                      {b.bookingNumber}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white border border-[#F8E8EC] text-[#4A1330]">
+                      {b.status}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-[#4A1330] text-sm">{b.clientName}</h3>
+                    <p className="text-[#B76E79] font-medium">{b.serviceType}</p>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[#7A6470] text-[11px]">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-[#B76E79]" />
+                      <span>{dateStr} • {b.scheduleTime || "11:00 AM"}</span>
+                    </div>
+                    {b.pickupLocation && (
+                      <div className="flex items-center gap-1 truncate max-w-[140px]">
+                        <MapPin className="w-3.5 h-3.5 text-[#C9A66B]" />
+                        <span className="truncate">{b.pickupLocation}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-2 border-t border-[#F8E8EC] flex items-center justify-between">
+                    <span className="font-mono font-bold text-[#4A1330]">
+                      ₹{Number(b.totalAmount).toLocaleString("en-IN")}
+                    </span>
+
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={waUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition"
+                        title="Chat on WhatsApp"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                      </a>
+                      <Link
+                        href="/admin/bookings"
+                        className="px-2.5 py-1 rounded-lg bg-white border border-[#F8E8EC] text-[11px] font-semibold text-[#4A1330] hover:bg-[#F8E8EC] transition"
+                      >
+                        Manage
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Recent Invoices Table */}

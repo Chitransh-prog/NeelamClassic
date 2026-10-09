@@ -19,7 +19,6 @@ import {
   CheckCircle2,
   Milestone,
   Truck,
-  Calculator,
   Receipt,
   RotateCcw,
 } from "lucide-react";
@@ -283,6 +282,18 @@ function NewBookingContent() {
                 onChange={(e) => setClientPhone(e.target.value)}
                 placeholder="Mobile Number *"
                 className="w-full text-xs text-[#2B1B24] placeholder-[#7A6470]/60 bg-transparent outline-none font-mono font-medium"
+              />
+            </div>
+
+            {/* Email Input */}
+            <div className="sm:col-span-2 relative flex items-center bg-[#FFF9F5] border border-[#F8E8EC] rounded-2xl px-4 py-3 focus-within:border-[#B76E79] focus-within:bg-white transition shadow-2xs">
+              <Mail className="w-4 h-4 text-[#7A6470] shrink-0 mr-3" />
+              <input
+                type="email"
+                value={clientEmail}
+                onChange={(e) => setClientEmail(e.target.value)}
+                placeholder="Client Email (Optional - for booking updates)"
+                className="w-full text-xs text-[#2B1B24] placeholder-[#7A6470]/60 bg-transparent outline-none font-medium"
               />
             </div>
 

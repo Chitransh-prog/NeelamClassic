@@ -4,16 +4,10 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Receipt,
   Plus,
   Search,
-  Download,
-  Share2,
   Trash2,
   Eye,
-  Filter,
-  CheckCircle2,
-  AlertCircle,
   FileSpreadsheet,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -69,6 +63,7 @@ export default function InvoicesListPage() {
 
   useEffect(() => {
     loadInvoices();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, statusFilter]);
 
   const handleDelete = async (id: string) => {
@@ -125,7 +120,7 @@ export default function InvoicesListPage() {
             />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-[#4A1330]">
+            <h1 className="text-2xl font-serif font-semibold tracking-tight text-[#4A1330]">
               Invoices &amp; Billing
             </h1>
             <p className="text-xs text-[#7A6470] mt-0.5">
@@ -136,16 +131,16 @@ export default function InvoicesListPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={exportCSV}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-[#F8E8EC] text-xs font-semibold text-[#4A1330] hover:bg-[#F8E8EC] transition"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-[#C9A66B]/30 hover:border-[#C9A66B] text-xs font-semibold text-[#4A1330] hover:bg-[#FFF9F5] shadow-xs transition-all cursor-pointer"
           >
-            <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
+            <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
             <span>Export CSV</span>
           </button>
           <Link
             href="/admin/invoices/new"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#4A1330] to-[#2F001B] text-[#FFF9F5] text-xs font-semibold hover:opacity-95 shadow-md shadow-[#4A1330]/20 transition"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#4A1330] hover:bg-[#2F001B] text-[#FFF9F5] text-xs font-semibold uppercase tracking-wider shadow-xs transition-all cursor-pointer"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3.5 h-3.5" />
             <span>Create New Invoice</span>
           </Link>
         </div>

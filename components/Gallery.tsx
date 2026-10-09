@@ -2,22 +2,17 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Maximize2, Camera } from "lucide-react";
-import SectionHeading from "./SectionHeading";
+import { GraduationCap, ArrowRight, Sparkles } from "lucide-react";
 import SafeImage from "./SafeImage";
 import Lightbox from "./Lightbox";
-import { GALLERY_ITEMS, GalleryItem } from "@/data/services";
-
-const CATEGORIES = ["All", "Bridal", "Makeup", "Permanent", "Hair", "Academy"] as const;
+import { GALLERY_ITEMS } from "@/data/services";
+import { openBookingModal } from "./ServiceBookingModal";
 
 export default function Gallery() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filteredItems =
-    selectedCategory === "All"
-      ? GALLERY_ITEMS
-      : GALLERY_ITEMS.filter((item) => item.category === selectedCategory);
+  // First 6 curated highlight tiles
+  const curatedItems = GALLERY_ITEMS.slice(0, 6);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -29,14 +24,14 @@ export default function Gallery() {
 
   const nextImage = () => {
     if (lightboxIndex !== null) {
-      setLightboxIndex((prev) => ((prev ?? 0) + 1) % filteredItems.length);
+      setLightboxIndex((prev) => ((prev ?? 0) + 1) % curatedItems.length);
     }
   };
 
   const prevImage = () => {
     if (lightboxIndex !== null) {
       setLightboxIndex(
-        (prev) => ((prev ?? 0) - 1 + filteredItems.length) % filteredItems.length
+        (prev) => ((prev ?? 0) - 1 + curatedItems.length) % curatedItems.length
       );
     }
   };
@@ -45,152 +40,89 @@ export default function Gallery() {
     <section id="gallery" className="py-24 sm:py-28 bg-[#fef8f4] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <SectionHeading
-          badge="Signature Portfolio"
-          title="Glimpse Our Master Artistry"
-          subtitle="A visual celebration of our radiant brides, flawless party glam, precision permanent makeup, and academy triumphs."
-        />
-
-        {/* Category Filter Pills */}
-        <div className="flex justify-center flex-wrap gap-2.5 mb-12">
-          {CATEGORIES.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
-                  isActive
-                    ? "bg-[#2F001B] text-[#FFF9F5] shadow-md scale-105 border border-[#C9A66B]/50"
-                    : "bg-[#f3ede9] text-[#7A6470] hover:text-[#4A1330] border border-[#C9A66B]/25 hover:bg-[#f3ede9]/80"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
+        {/* Section Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F8E8EC] border border-[#B76E79]/30 text-[#B76E79] text-[11px] sm:text-[12px] font-medium tracking-[0.18em] uppercase mb-4 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A66B]" />
+            <span>ACADEMY ATELIER &amp; CURATED GALLERY</span>
+          </div>
+          <h2 className="text-[32px] sm:text-[44px] md:text-[48px] font-serif font-semibold text-[#4A1330] leading-[1.16] tracking-normal sm:tracking-[-0.01em]">
+            Academy Atelier &amp; Curated Gallery
+          </h2>
+          <p className="text-[15px] sm:text-[16px] text-[#7A6470] mt-3 leading-relaxed">
+            Where traditional Indian beauty traditions fuse with certified clinical PMU and editorial hair artistry.
+          </p>
         </div>
 
-        {/* Curated Editorial Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {filteredItems.slice(0, 7).map((item, index) => {
-            // Apply subtle architectural silhouettes to images
-            const isArch = index % 3 === 0;
-
-            return (
-              <motion.div
-                layout
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35 }}
-                onClick={() => openLightbox(index)}
-                className={`group relative cursor-pointer overflow-hidden bg-[#f3ede9] border border-[#C9A66B]/35 hover:border-[#C9A66B] plum-shadow-resting hover:plum-shadow-floating transition-all duration-300 ${
-                  isArch ? "vanity-arch-sm" : "rounded-[24px]"
-                }`}
-              >
-                {/* Image Frame */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden">
-                  <SafeImage
-                    src={item.src}
-                    alt={item.alt}
-                    placeholderTitle={item.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2F001B]/95 via-[#2F001B]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-[#FFF9F5]">
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#C9A66B] mb-1">
-                      {item.category}
-                    </span>
-                    <h4 className="text-sm font-semibold leading-snug mb-2">
-                      {item.title}
-                    </h4>
-                    <div className="inline-flex items-center gap-1.5 text-xs text-[#FFF9F5]/90">
-                      <Maximize2 className="w-3.5 h-3.5 text-[#C9A66B]" />
-                      <span>View In Detail</span>
-                    </div>
-                  </div>
-
-                  {/* Badge */}
-                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#fef8f4]/90 backdrop-blur-sm text-[#4A1330] text-[9px] font-bold uppercase tracking-wider shadow-sm border border-[#C9A66B]/30 group-hover:opacity-0 transition-opacity">
-                    {item.category}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Featured Grand Centerpiece (Lustrous Hair Smoothening Showcase) */}
-        {filteredItems.length >= 8 && (
-          <div className="mt-14 max-w-4xl mx-auto">
-            {/* Editorial Divider Header */}
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-3">
-                <span className="w-12 sm:w-20 h-[1px] bg-gradient-to-r from-transparent to-[#C9A66B]" />
-                <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-[#4A1330]">
-                  Neelam Classic Salon &amp; Academy
-                </h3>
-                <span className="w-12 sm:w-20 h-[1px] bg-gradient-to-l from-transparent to-[#C9A66B]" />
-              </div>
-            </div>
-
-            {/* Big Feature Card */}
-            <div
-              onClick={() => openLightbox(7)}
-              className="group cursor-pointer relative rounded-[28px] overflow-hidden border-[1.5px] border-[#C9A66B]/60 shadow-[0_20px_45px_-10px_rgba(74,19,48,0.18)] bg-[#f3ede9]"
+        {/* 6-Photo Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          {curatedItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              onClick={() => openLightbox(index)}
+              className="group cursor-pointer relative aspect-square rounded-2xl overflow-hidden bg-[#f3ede9] border border-[#C9A66B]/20 shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden">
-                <SafeImage
-                  src={filteredItems[7]?.src || "/images/gallery-8.jpg"}
-                  alt={filteredItems[7]?.alt || "Luxury Hair Smoothening"}
-                  placeholderTitle={filteredItems[7]?.title || "Lustrous Hair Smoothening"}
-                  fill
-                  sizes="(max-width: 1200px) 100vw, 1000px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2F001B]/90 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-10 text-[#FFF9F5]">
-                  <span className="text-xs uppercase tracking-widest text-[#C9A66B] font-semibold mb-1">
-                    Signature Hair Transformation
-                  </span>
-                  <h4 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#FFF9F5]">
-                    Lustrous Nanoplastia &amp; Keratin Smoothening
-                  </h4>
-                  <p className="text-xs sm:text-sm text-[#f5f0ec]/80 mt-1">
-                    Click to view full resolution transformation details
-                  </p>
-                </div>
+              <SafeImage
+                src={item.src}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span className="text-[11px] text-[#FFF9F5] font-medium leading-tight">
+                  {item.title}
+                </span>
               </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Academy Admissions Bottom Banner */}
+        <div className="mt-10 sm:mt-12 rounded-3xl bg-white border border-[#F8E8EC] p-5 sm:p-6 shadow-xs flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-[#4A1330] text-[#C9A66B] flex items-center justify-center shrink-0 shadow-sm">
+              <GraduationCap className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="text-sm sm:text-base font-semibold text-[#4A1330] flex items-center justify-center md:justify-start gap-2">
+                <span>Admissions Open for Master PMU &amp; Bridal Artistry Diploma</span>
+                <Sparkles className="w-4 h-4 text-[#C9A66B]" />
+              </div>
+              <p className="text-xs text-[#7A6470] mt-0.5">
+                Industry-recognized certificates, live bridal models, and business mentorship with Master Neelam.
+              </p>
             </div>
           </div>
-        )}
 
-        {/* Notice for Custom Additions */}
-        <div className="mt-12 text-center">
-          <p className="text-xs text-[#7A6470] flex items-center justify-center gap-2">
-            <Camera className="w-3.5 h-3.5 text-[#B76E79]" />
-            <span>Real brides &amp; client transformations updated weekly in our studio.</span>
-          </p>
+          <button
+            type="button"
+            onClick={() =>
+              openBookingModal({
+                serviceName: "Professional Academy Masterclass",
+                categoryName: "Professional Academy",
+              })
+            }
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#4A1330] hover:bg-[#2F001B] text-[#FFF9F5] text-xs font-semibold tracking-wider transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer shrink-0"
+          >
+            <span>ACADEMY ADMISSIONS ENQUIRY</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#C9A66B]" />
+          </button>
         </div>
 
       </div>
 
       {/* Lightbox Modal */}
       <Lightbox
-        item={lightboxIndex !== null ? filteredItems[lightboxIndex] : null}
+        item={lightboxIndex !== null ? curatedItems[lightboxIndex] : null}
         onClose={closeLightbox}
         onNext={nextImage}
         onPrev={prevImage}
-        total={filteredItems.length}
+        total={curatedItems.length}
         currentIndex={lightboxIndex ?? 0}
       />
     </section>

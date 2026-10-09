@@ -37,7 +37,7 @@ export default function SectionHeading({
       )}
 
       <h2
-        className={`text-[30px] sm:text-[40px] md:text-[44px] font-semibold tracking-[-0.02em] leading-[1.18] ${
+        className={`text-[28px] sm:text-[38px] md:text-[44px] font-serif font-semibold tracking-normal sm:tracking-[-0.01em] leading-[1.2] ${
           dark ? "text-[#FFF9F5]" : "text-[#4A1330]"
         }`}
       >

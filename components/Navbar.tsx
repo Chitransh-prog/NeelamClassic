@@ -3,16 +3,16 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Phone, MessageCircle, Sparkles } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Sparkles, Calendar } from "lucide-react";
 import { SALON_INFO, getWhatsAppUrl } from "@/lib/utils";
+import { openBookingModal } from "@/components/ServiceBookingModal";
 
 const NAV_LINKS = [
-  { name: "Home", href: "#hero" },
-  { name: "Services", href: "#services" },
-  { name: "Makeup", href: "#makeup" },
-  { name: "Academy", href: "#academy" },
+  { name: "Founder", href: "#about" },
+  { name: "Sanctuaries", href: "#services" },
+  { name: "Tariffs", href: "#pricing" },
   { name: "Gallery", href: "#gallery" },
-  { name: "Contact", href: "#contact" },
+  { name: "Endorsements", href: "#testimonials" },
 ];
 
 export default function Navbar() {
@@ -21,7 +21,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 25);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -44,84 +44,105 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Floating Pill Nav suspended 24px from top */}
-      <header className="fixed top-3 sm:top-5 inset-x-3 sm:inset-x-6 z-50 max-w-6xl mx-auto">
+      {/* Floating Minimal Pill Nav */}
+      <header className="fixed top-3 sm:top-4 inset-x-3 sm:inset-x-6 z-50 max-w-5xl mx-auto">
         <div
-          className={`flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 ${
+          className={`flex items-center justify-between px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 ${
             scrolled
-              ? "bg-[#fef8f4]/95 backdrop-blur-xl border border-[#C9A66B]/45 shadow-[0_16px_36px_-8px_rgba(74,19,48,0.18)]"
-              : "bg-[#fef8f4]/90 backdrop-blur-md border border-[#C9A66B]/30 shadow-[0_10px_28px_-6px_rgba(74,19,48,0.1)]"
+              ? "bg-[#FFF9F5]/95 backdrop-blur-xl border border-[#C9A66B]/40 shadow-[0_12px_32px_-6px_rgba(47,0,27,0.16)]"
+              : "bg-[#FFF9F5]/90 backdrop-blur-md border border-[#C9A66B]/28 shadow-[0_8px_24px_-6px_rgba(47,0,27,0.1)]"
           }`}
         >
           {/* Logo & Brand Name */}
           <Link
             href="#hero"
-            className="group flex items-center gap-2.5 sm:gap-3 focus:outline-none rounded-full p-0.5"
+            className="group flex items-center gap-2.5 focus:outline-none shrink-0"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-full overflow-hidden shadow-sm border border-[#C9A66B]/60 bg-black transition-transform group-hover:scale-105">
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full overflow-hidden border border-[#C9A66B]/60 bg-black transition-transform group-hover:scale-105 shadow-xs">
               <Image
                 src="/images/logo.png"
-                alt="Neelam Classic Monogram"
-                width={40}
-                height={40}
+                alt="Neelam Classic"
+                width={36}
+                height={36}
                 className="object-cover w-full h-full"
                 priority
               />
             </div>
-            <div className="flex flex-col items-start">
-              <div className="flex items-center gap-1.5">
-                <span className="text-base sm:text-lg font-semibold tracking-tight text-[#4A1330] group-hover:text-[#B76E79] transition-colors leading-none">
-                  Neelam Classic
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C9A66B]" />
-              </div>
-              <span className="text-[9px] sm:text-[10px] font-medium tracking-[0.2em] uppercase text-[#7A6470] mt-0.5">
+            <div className="flex flex-col items-start justify-center">
+              <span className="font-serif text-[15px] sm:text-base font-semibold tracking-wide text-[#4A1330] group-hover:text-[#B76E79] transition-colors leading-none">
+                Neelam Classic
+              </span>
+              <span className="text-[8.5px] uppercase tracking-[0.22em] text-[#7A6470] font-medium leading-none mt-1">
                 Salon &amp; Academy
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-5 lg:gap-7">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[13px] font-medium tracking-[0.02em] text-[#1d1b19] hover:text-[#B76E79] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#C9A66B] hover:after:w-full after:transition-all after:duration-250"
+                className="text-[12px] lg:text-[12.5px] font-medium tracking-[0.03em] text-[#3d2b33] hover:text-[#B76E79] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] after:bg-[#C9A66B] hover:after:w-full after:transition-all after:duration-250"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Right Action: Phone & Rose-Gold Book Now Button */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Sleek Right Action Cluster */}
+          <div className="hidden sm:flex items-center gap-2 lg:gap-2.5 shrink-0">
+            {/* Minimal Phone Icon */}
             <a
               href={SALON_INFO.telLink}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#4A1330] hover:text-[#B76E79] transition-colors"
+              className="hidden lg:inline-flex items-center justify-center w-8 h-8 rounded-full text-[#4A1330]/80 hover:text-[#4A1330] hover:bg-[#4A1330]/5 transition-colors"
+              title={`Call ${SALON_INFO.phone}`}
+              aria-label="Call salon"
             >
-              <Phone className="w-3.5 h-3.5 text-[#B76E79]" />
-              <span>{SALON_INFO.phone}</span>
+              <Phone className="w-3.5 h-3.5 text-[#C9A66B]" />
             </a>
 
+            {/* Minimal WhatsApp Button */}
             <a
               href={getWhatsAppUrl("Hi Neelam Classic, I'd like to book an appointment.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#B76E79] text-[#FFF9F5] text-xs font-semibold tracking-[0.08em] shadow-[0_8px_20px_-4px_rgba(183,110,121,0.4)] hover:bg-[#a55e69] hover:scale-105 active:scale-95 transition-all"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/10 hover:bg-emerald-600 text-emerald-600 hover:text-white border border-emerald-500/25 transition-all duration-200"
+              title="Chat & book on WhatsApp"
+              aria-label="Book on WhatsApp"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#C9A66B]" />
-              <span>Book Now</span>
+              <MessageCircle className="w-4 h-4" />
             </a>
+
+            {/* Primary Booking Button */}
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
+              className="inline-flex items-center gap-1.5 px-3.5 lg:px-4 py-2 rounded-full bg-[#4A1330] hover:bg-[#2F001B] text-[#FFF9F5] text-[11px] lg:text-[11.5px] font-semibold tracking-wider uppercase whitespace-nowrap shadow-xs hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            >
+              <Calendar className="w-3 h-3 text-[#C9A66B]" />
+              <span>Book Appointment</span>
+            </button>
           </div>
 
           {/* Mobile Hamburger & Quick CTA */}
-          <div className="flex sm:hidden items-center gap-2">
+          <div className="flex sm:hidden items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#4A1330] text-[#FFF9F5] shadow-xs"
+              aria-label="Book Appointment"
+              title="Book Appointment"
+            >
+              <Calendar className="w-3.5 h-3.5 text-[#C9A66B]" />
+            </button>
+
             <a
               href={getWhatsAppUrl("Hi Neelam Classic, I'd like to book an appointment.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center p-2 rounded-full bg-[#B76E79] text-[#FFF9F5] text-xs shadow-sm"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-600 text-[#FFF9F5] shadow-xs"
               aria-label="Book on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5" />
@@ -130,11 +151,11 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-full bg-[#F8E8EC] text-[#4A1330] hover:bg-[#B76E79]/20 transition-colors focus:outline-none"
+              className="p-1.5 rounded-full bg-[#F8E8EC] text-[#4A1330] hover:bg-[#B76E79]/20 transition-colors focus:outline-none ml-0.5"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -202,12 +223,24 @@ export default function Navbar() {
 
         {/* Bottom Drawer Actions */}
         <div className="pt-5 border-t border-[#C9A66B]/25 flex flex-col gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              handleLinkClick();
+              openBookingModal();
+            }}
+            className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-[#4A1330] text-[#FFF9F5] font-semibold text-xs tracking-wider shadow-md"
+          >
+            <Calendar className="w-4 h-4 text-[#C9A66B]" />
+            <span>Book Appointment (Form)</span>
+          </button>
+
           <a
             href={getWhatsAppUrl("Hi Neelam Classic, I'd like to book an appointment.")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleLinkClick}
-            className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-[#B76E79] text-[#FFF9F5] font-semibold text-xs tracking-wider shadow-md"
+            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-emerald-600 text-[#FFF9F5] font-semibold text-xs tracking-wider shadow-md"
           >
             <MessageCircle className="w-4 h-4 text-[#FFF9F5]" />
             <span>Book on WhatsApp</span>

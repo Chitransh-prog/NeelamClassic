@@ -13,10 +13,6 @@ import {
   CheckCircle,
   Plus,
   Trash2,
-  Copy,
-  Receipt,
-  Clock,
-  Sparkles,
   X,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -100,6 +96,7 @@ export default function InvoiceDetailsPage() {
 
   useEffect(() => {
     if (id) loadInvoice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleMarkPaid = async () => {

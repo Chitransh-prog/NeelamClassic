@@ -12,6 +12,7 @@ export const SALON_INFO = {
   phone: "9826747023",
   telLink: "tel:+919826747023",
   formattedPhone: "+91 98267 47023",
+  address: "Ground Floor, Main Market, Mandideep, Bhopal",
   totalServicesCount: 135,
 };
 

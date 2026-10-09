@@ -25,6 +25,7 @@
   --color-muted: #7A6470;
   
   --font-sans: var(--font-plus-jakarta), sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
 }
 
 :root {
@@ -57,6 +58,17 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+}
+
+.font-serif,
+.font-display {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+/* Ensure headings have crisp letter-spacing and no glyph collision */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
 }
 
 /* Architectural Vanity Arch */

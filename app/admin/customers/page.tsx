@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Users, Search, Phone, Mail, Receipt, Plus, X } from "lucide-react";
+import { Search, Receipt, Plus, X } from "lucide-react";
 import { toast } from "sonner";
 
 interface Customer {
@@ -43,6 +43,7 @@ export default function CustomersPage() {
 
   useEffect(() => {
     loadCustomers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   const handleSave = async (e: React.FormEvent) => {
@@ -72,7 +73,7 @@ export default function CustomersPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#4A1330]">
+          <h1 className="text-2xl font-serif font-semibold tracking-tight text-[#4A1330]">
             Customer Directory
           </h1>
           <p className="text-xs text-[#7A6470] mt-1">
@@ -81,7 +82,7 @@ export default function CustomersPage() {
         </div>
         <button
           onClick={() => setModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#4A1330] to-[#2F001B] text-[#FFF9F5] text-xs font-semibold hover:opacity-95 shadow-md shadow-[#4A1330]/20 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#4A1330] hover:bg-[#2F001B] text-[#FFF9F5] text-xs font-semibold uppercase tracking-wider shadow-xs transition-all cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Customer</span>

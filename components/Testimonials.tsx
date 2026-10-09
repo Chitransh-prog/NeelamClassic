@@ -35,9 +35,9 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <SectionHeading
-          badge="Client Love"
-          title="Words From Our Radiant Clients"
-          subtitle="Real experiences from cherished brides, long-time salon visitors, and passionate academy graduates."
+          badge="PATRON TESTIMONIALS"
+          title="Endorsements of Elegance"
+          subtitle="Honest impressions from cherished brides, long-time salon patrons, and diploma graduates."
         />
 
         <div className="max-w-3xl mx-auto relative">

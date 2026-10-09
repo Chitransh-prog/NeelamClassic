@@ -7,7 +7,6 @@ import {
   Sparkles,
   CheckCircle2,
   Clock,
-  BookOpen,
   Award,
   MessageCircle,
   Users,
@@ -15,7 +14,7 @@ import {
 import SectionHeading from "./SectionHeading";
 import SafeImage from "./SafeImage";
 import { ACADEMY_COURSES } from "@/data/services";
-import { getWhatsAppUrl, SALON_INFO } from "@/lib/utils";
+import { getWhatsAppUrl } from "@/lib/utils";
 
 export default function Academy() {
   return (

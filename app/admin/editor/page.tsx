@@ -8,23 +8,13 @@ import {
   Smartphone,
   Undo2,
   Redo2,
-  Save,
   UploadCloud,
   History,
-  Eye,
   Sliders,
-  Sparkles,
-  Layers,
   Image as ImageIcon,
-  Video as VideoIcon,
   Search,
   CheckCircle2,
   X,
-  Plus,
-  Trash2,
-  ArrowUp,
-  ArrowDown,
-  ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
 import { SiteSectionsData } from "@/lib/content";
@@ -260,16 +250,15 @@ export default function VisualEditorPage() {
   }
 
   const sectionsList = [
-    { id: "hero", name: "Hero Banner" },
-    { id: "about", name: "About & Founder" },
-    { id: "servicesOverview", name: "Services Portfolio" },
-    { id: "makeupPriceList", name: "Makeup Price List" },
-    { id: "videoShowcase", name: "Video Showcase" },
-    { id: "academy", name: "Academy Courses" },
-    { id: "gallery", name: "Photo Gallery" },
-    { id: "testimonials", name: "Client Reviews" },
-    { id: "contact", name: "Contact & Hours" },
-    { id: "footer", name: "Footer & Copyright" },
+    { id: "hero", name: "Hero Atelier Banner" },
+    { id: "about", name: "The Founder's Sanctuary" },
+    { id: "servicesOverview", name: "Curated Signature Sanctuaries" },
+    { id: "makeupPriceList", name: "Haute Couture Menu & Tariffs" },
+    { id: "academy", name: "Academy Atelier & Mentorship" },
+    { id: "gallery", name: "Curated Photo Gallery" },
+    { id: "testimonials", name: "Endorsements of Elegance" },
+    { id: "contact", name: "Reservation Concierge Banner" },
+    { id: "footer", name: "Haute Footer & Details" },
   ];
 
   return (

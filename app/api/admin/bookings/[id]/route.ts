@@ -39,6 +39,9 @@ export async function PATCH(
 
       const updateData: Record<string, unknown> = {};
 
+      if (body.clientName !== undefined) updateData.clientName = body.clientName.trim();
+      if (body.clientPhone !== undefined) updateData.clientPhone = body.clientPhone.trim();
+      if (body.clientEmail !== undefined) updateData.clientEmail = body.clientEmail ? body.clientEmail.trim() : null;
       if (body.status !== undefined) updateData.status = body.status;
       if (body.scheduleDate !== undefined) updateData.scheduleDate = new Date(body.scheduleDate);
       if (body.scheduleTime !== undefined) updateData.scheduleTime = body.scheduleTime;

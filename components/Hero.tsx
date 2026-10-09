@@ -3,19 +3,22 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MessageCircle, Phone, Sparkles, Star, ChevronDown, Award } from "lucide-react";
+import { MessageCircle, Sparkles, Star, ChevronDown, Calendar } from "lucide-react";
 import SafeImage from "./SafeImage";
-import { SALON_INFO, getWhatsAppUrl } from "@/lib/utils";
+import { getWhatsAppUrl } from "@/lib/utils";
+import { openBookingModal } from "./ServiceBookingModal";
 
 import { SiteSectionsData } from "@/lib/content";
 
 export default function Hero({ content }: { content?: Partial<SiteSectionsData["hero"]> }) {
-  const badge = content?.badge || "Luxury Salon & Academy";
-  const titleLine1 = content?.titleLine1 || "Timeless Elegance &";
-  const titleHighlight = content?.titleHighlight || "Signature Artistry";
-  const description = content?.description || "Indulge in royal bridal transformations, high-precision permanent makeup (PMU), advanced hair therapies, and master academy training personally curated by Neelam Chourasiya.";
-  const primaryBtnText = content?.primaryBtnText || "Book on WhatsApp";
-  const secondaryBtnText = content?.secondaryBtnText || "Call Now";
+  const badge = content?.badge || "BESPOKE BRIDAL MAKEUP & ADVANCED PMU CLINIC";
+  const titleLine1 = content?.titleLine1 || "The Architecture of";
+  const titleHighlight = content?.titleHighlight || "Radiant Grace.";
+  const description =
+    content?.description ||
+    "The definitive sanctuary of elevated bridal couture, micro-pigmentation artistry (PMU), and precision cosmetological hair trichology. Every distinguishing ritual is curated directly by Master Neelam Chourasiya.";
+  const primaryBtnText = content?.primaryBtnText || "Book an Appointment";
+  const secondaryBtnText = content?.secondaryBtnText || "Book with WA";
   const heroImage = content?.image || "/images/hero-bride.jpg";
   return (
     <section
@@ -42,37 +45,38 @@ export default function Hero({ content }: { content?: Partial<SiteSectionsData["
               <span>{badge}</span>
             </div>
 
-            {/* Display Headline */}
-            <h1 className="text-[38px] sm:text-[56px] md:text-[68px] lg:text-[72px] font-semibold tracking-[-0.03em] leading-[1.08] text-[#FFF9F5] mb-6">
+            {/* Display Headline with elegant Playfair serif accent */}
+            <h1 className="text-[38px] sm:text-[54px] md:text-[64px] lg:text-[70px] font-serif font-medium tracking-normal sm:tracking-[-0.01em] leading-[1.12] text-[#FFF9F5] mb-6">
               {titleLine1}{" "}
-              <span className="bg-gradient-to-r from-[#B76E79] via-[#e2b988] to-[#C9A66B] bg-clip-text text-transparent">
+              <span className="font-serif italic font-normal bg-gradient-to-r from-[#B76E79] via-[#f5d0a9] to-[#C9A66B] bg-clip-text text-transparent block sm:inline">
                 {titleHighlight}
               </span>
             </h1>
 
             {/* Body Editorial */}
-            <p className="text-[16px] sm:text-[17px] text-[#f5f0ec]/85 max-w-xl mb-10 leading-[1.7] font-normal">
+            <p className="text-[15px] sm:text-[17px] text-[#f5f0ec]/85 max-w-xl mb-10 leading-[1.75] font-normal">
               {description}
             </p>
 
-            {/* Two Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons: Book with Form & WhatsApp */}
+            <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openBookingModal()}
+                className="btn-rose-gold w-full sm:w-auto inline-flex items-center justify-center gap-2.5 cursor-pointer"
+              >
+                <Calendar className="w-4 h-4 text-[#C9A66B]" />
+                <span>{primaryBtnText}</span>
+              </button>
+
               <a
                 href={getWhatsAppUrl("Hi Neelam Classic Salon, I would like to book an appointment.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-rose-gold w-full sm:w-auto inline-flex items-center justify-center gap-2.5"
-              >
-                <MessageCircle className="w-4 h-4 text-[#FFF9F5]" />
-                <span>{primaryBtnText}</span>
-              </a>
-
-              <a
-                href={SALON_INFO.telLink}
                 className="btn-champagne-outline w-full sm:w-auto inline-flex items-center justify-center gap-2.5"
               >
-                <Phone className="w-4 h-4 text-[#C9A66B]" />
-                <span>Call Now</span>
+                <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                <span>{secondaryBtnText}</span>
               </a>
             </div>
 
@@ -122,10 +126,10 @@ export default function Hero({ content }: { content?: Partial<SiteSectionsData["
                   </div>
                   <div>
                     <h4 className="text-[12px] font-semibold text-[#FFF9F5] uppercase tracking-wider">
-                      Royal Bridal Artistry
+                      Master Neelam Chourasiya
                     </h4>
                     <p className="text-[11px] text-[#C9A66B]">
-                      Curated by Neelam Chourasiya
+                      Founder &amp; Bridal Maestro
                     </p>
                   </div>
                 </div>
@@ -139,29 +143,29 @@ export default function Hero({ content }: { content?: Partial<SiteSectionsData["
         {/* Bottom Metrics Bar */}
         <div className="mt-16 sm:mt-20 pt-10 border-t border-[#C9A66B]/25 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 text-center">
           <div className="flex flex-col items-center">
-            <div className="text-3xl sm:text-4xl font-semibold text-[#FFF9F5] tracking-tight">
-              135+
+            <div className="text-3xl sm:text-4xl font-serif font-semibold text-[#FFF9F5] tracking-normal">
+              15+
             </div>
-            <div className="text-xs uppercase tracking-[0.16em] text-[#C9A66B] mt-1">
-              Bespoke Salon Services
+            <div className="text-xs uppercase tracking-[0.16em] text-[#C9A66B] mt-1 font-medium">
+              Years of Master Mastery
             </div>
           </div>
 
           <div className="flex flex-col items-center sm:border-x border-[#C9A66B]/25 px-4">
-            <div className="text-3xl sm:text-4xl font-semibold text-[#FFF9F5] tracking-tight flex items-center gap-1.5">
-              5.0 <Star className="w-5 h-5 fill-[#C9A66B] text-[#C9A66B]" />
+            <div className="text-3xl sm:text-4xl font-serif font-semibold text-[#FFF9F5] tracking-normal flex items-center gap-1.5">
+              4.9 <Star className="w-5 h-5 fill-[#C9A66B] text-[#C9A66B]" />
             </div>
-            <div className="text-xs uppercase tracking-[0.16em] text-[#C9A66B] mt-1">
-              Client Satisfaction Rating
+            <div className="text-xs uppercase tracking-[0.16em] text-[#C9A66B] mt-1 font-medium">
+              500+ Patron Reviews
             </div>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="text-3xl sm:text-4xl font-semibold text-[#FFF9F5] tracking-tight">
-              PMU Certified
+            <div className="text-3xl sm:text-4xl font-serif font-semibold text-[#FFF9F5] tracking-normal">
+              135+
             </div>
-            <div className="text-xs uppercase tracking-[0.16em] text-[#C9A66B] mt-1">
-              Master Microblading Educator
+            <div className="text-xs uppercase tracking-[0.16em] text-[#C9A66B] mt-1 font-medium">
+              Architectural Rituals
             </div>
           </div>
         </div>

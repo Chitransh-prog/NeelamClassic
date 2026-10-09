@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Edit3, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight, Edit3 } from "lucide-react";
 
 interface ScheduleDatePickerModalProps {
   isOpen: boolean;

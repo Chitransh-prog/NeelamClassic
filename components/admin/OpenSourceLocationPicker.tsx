@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   MapPin,
   Navigation,
@@ -79,6 +79,41 @@ export default function OpenSourceLocationPicker({
   const [isLocatingUser, setIsLocatingUser] = useState(false);
   const [locationStatus, setLocationStatus] = useState<string>("Ready");
   const [showResultsDropdown, setShowResultsDropdown] = useState(false);
+
+  const reverseGeocode = useCallback(
+    async (latitude: number, longitude: number, distance: number) => {
+      try {
+        setLocationStatus("Fetching exact street address...");
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
+          { headers: { "Accept-Language": "en" } }
+        );
+        if (res.ok) {
+          const data = await res.json();
+          const detectedAddress =
+            data.display_name || `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+          setAddress(detectedAddress);
+          setLocationStatus(`Location verified • ${distance} km from Studio`);
+          onLocationChange({
+            address: detectedAddress,
+            lat: latitude,
+            lng: longitude,
+            distanceKm: distance,
+          });
+        }
+      } catch {
+        const fallback = `Coordinates: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+        setAddress(fallback);
+        onLocationChange({
+          address: fallback,
+          lat: latitude,
+          lng: longitude,
+          distanceKm: distance,
+        });
+      }
+    },
+    [onLocationChange]
+  );
 
   useEffect(() => {
     if (typeof window === "undefined" || !mapContainerRef.current) return;
@@ -177,43 +212,8 @@ export default function OpenSourceLocationPicker({
         mapInstanceRef.current = null;
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const reverseGeocode = async (
-    latitude: number,
-    longitude: number,
-    distance: number
-  ) => {
-    try {
-      setLocationStatus("Fetching exact street address...");
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
-        { headers: { "Accept-Language": "en" } }
-      );
-      if (res.ok) {
-        const data = await res.json();
-        const detectedAddress =
-          data.display_name || `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
-        setAddress(detectedAddress);
-        setLocationStatus(`Location verified • ${distance} km from Studio`);
-        onLocationChange({
-          address: detectedAddress,
-          lat: latitude,
-          lng: longitude,
-          distanceKm: distance,
-        });
-      }
-    } catch {
-      const fallback = `Coordinates: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
-      setAddress(fallback);
-      onLocationChange({
-        address: fallback,
-        lat: latitude,
-        lng: longitude,
-        distanceKm: distance,
-      });
-    }
-  };
 
   const handleUseLiveLocation = () => {
     if (!navigator.geolocation) {

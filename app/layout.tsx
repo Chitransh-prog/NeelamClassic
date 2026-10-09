@@ -1,12 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import ServiceBookingModal from "@/components/ServiceBookingModal";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -93,7 +102,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={plusJakartaSans.variable}>
+    <html lang="en" className={`${plusJakartaSans.variable} ${playfairDisplay.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -103,6 +112,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#fef8f4] text-[#1d1b19] font-sans antialiased selection:bg-[#B76E79]/20 selection:text-[#4A1330]">
         {children}
         <FloatingWhatsApp />
+        <ServiceBookingModal />
       </body>
     </html>
   );

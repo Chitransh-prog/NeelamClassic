@@ -12,6 +12,9 @@ export async function GET() {
       totalCustomers,
       newEnquiriesCount,
       recentInvoices,
+      pendingBookingsCount,
+      totalBookingsCount,
+      upcomingBookings,
     ] = await withDbRetry(async () => {
       return await Promise.all([
         // Invoices this month
@@ -44,6 +47,21 @@ export async function GET() {
           orderBy: { createdAt: "desc" },
           take: 5,
           include: { customer: true },
+        }),
+
+        // Pending bookings count
+        prisma.booking.count({
+          where: { status: "Pending" },
+        }),
+
+        // Total bookings count
+        prisma.booking.count(),
+
+        // Next 4 upcoming bookings
+        prisma.booking.findMany({
+          where: { scheduleDate: { gte: new Date(new Date().setHours(0, 0, 0, 0)) } },
+          orderBy: { scheduleDate: "asc" },
+          take: 4,
         }),
       ]);
     });
@@ -91,9 +109,12 @@ export async function GET() {
         pendingPayments: totalPendingPayments,
         totalCustomers,
         newEnquiries: newEnquiriesCount,
+        pendingBookings: pendingBookingsCount,
+        totalBookings: totalBookingsCount,
       },
       revenueChart,
       recentInvoices,
+      upcomingBookings,
     });
   } catch (err: unknown) {
     console.error("Dashboard metrics error:", err);

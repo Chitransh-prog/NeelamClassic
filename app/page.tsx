@@ -4,7 +4,6 @@ import About from "@/components/About";
 import ServicesOverview from "@/components/ServicesOverview";
 import MakeupPricing from "@/components/MakeupPricing";
 import AtmosphericBanner from "@/components/AtmosphericBanner";
-import Academy from "@/components/Academy";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import ContactSection from "@/components/ContactSection";
@@ -56,19 +55,16 @@ export default async function Home() {
         {/* 4. Makeup & PMU Price List (Editorial Ledger + Model Arch) */}
         <MakeupPricing />
 
-        {/* 5. Cinematic Atelier Quote Banner */}
+        {/* 5. Signature Bridal Atelier Arch */}
         <AtmosphericBanner />
 
-        {/* 6. Neelam Classic Academy (Deep Plum Luxury) */}
-        <Academy />
-
-        {/* 7. Portfolio Gallery with Centerpiece Showcase & Lightbox */}
+        {/* 6. Academy Atelier & Curated Gallery */}
         <Gallery />
 
-        {/* 8. Client Reviews Carousel */}
+        {/* 7. Patron Endorsements of Elegance */}
         <Testimonials />
 
-        {/* 9. Contact & Quick Booking Form (No Map) */}
+        {/* 8. Reserve Your Appointment - Haute Experience Banner */}
         <ContactSection />
       </main>
 

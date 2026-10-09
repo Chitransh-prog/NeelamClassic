@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Lock, KeyRound, CheckCircle2, AlertCircle, ArrowRight, ShieldAlert } from "lucide-react";
+import { Lock, KeyRound, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 
 export default function ForcePasswordChangePage() {
   const router = useRouter();

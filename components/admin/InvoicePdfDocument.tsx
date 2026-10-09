@@ -5,7 +5,6 @@ import {
   Text,
   View,
   StyleSheet,
-  Font,
   Image as PdfImage,
 } from "@react-pdf/renderer";
 import { numberToIndianWords } from "@/lib/number-to-words";
