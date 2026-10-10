@@ -104,6 +104,7 @@ export default function Gallery() {
             onClick={() =>
               openBookingModal({
                 serviceName: "Professional Academy Masterclass",
+                servicePrice: "Admissions Open",
                 categoryName: "Professional Academy",
               })
             }

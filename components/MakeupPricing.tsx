@@ -252,6 +252,21 @@ export default function MakeupPricing() {
 
               {/* Action Buttons */}
               <div className="space-y-2.5 pt-4">
+                <button
+                  type="button"
+                  onClick={() =>
+                    openBookingModal({
+                      serviceName: "Signature Royal Maharani Makeup",
+                      servicePrice: "₹25,000",
+                      categoryName: "Bespoke Concierge",
+                    })
+                  }
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#B76E79] hover:bg-[#a85f6a] text-[#FFF9F5] text-xs font-semibold tracking-wider transition-all shadow-md hover:scale-102 cursor-pointer"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#FFF9F5]" />
+                  <span>Reserve Bespoke Suite</span>
+                </button>
+
                 <a
                   href={getWhatsAppUrl("Hi Neelam Classic Atelier, I would like to request a bespoke bridal trousseau consultation.")}
                   target="_blank"

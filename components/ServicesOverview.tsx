@@ -154,8 +154,10 @@ export default function ServicesOverview() {
                     openBookingModal({
                       serviceName: pavilion.title,
                       servicePrice: pavilion.priceDisplay,
+                      categoryName: pavilion.tag,
                     })
                   }
+                  title={`Book ${pavilion.title}`}
                   className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-[#4A1330] hover:bg-[#2F001B] text-[#FFF9F5] text-xs font-semibold tracking-wider transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
                 >
                   <span>BOOK</span>

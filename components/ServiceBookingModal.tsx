@@ -38,35 +38,55 @@ export function openBookingModal(details?: BookingEventDetail) {
   }
 }
 
-const POPULAR_SERVICES_LIST = [
-  // Bridal & Signature
+const ALL_SERVICES_CATALOG: { name: string; price: string; cat: string }[] = [
+  // 1. Curated Signature Sanctuaries (Pavilion Cards)
+  { name: "Couture Bridal & High-Definition Makeup", price: "₹15,000", cat: "Signature Sanctuaries" },
+  { name: "Advanced Trichology & Hair Architecture", price: "₹2,500", cat: "Signature Sanctuaries" },
+  { name: "Derma-Radiance & Body Alchemy", price: "₹1,800", cat: "Signature Sanctuaries" },
+  { name: "Micro-Pigmentation & Permanent Cosmetics", price: "₹8,000", cat: "Signature Sanctuaries" },
+
+  // 2. Royal Bridal Transformations
+  { name: "Signature HD Bridal Makeup", price: "₹15,000", cat: "Bridal Makeup" },
+  { name: "Airbrush Bridal Artistry", price: "₹18,000", cat: "Bridal Makeup" },
   { name: "Royal Bridal HD Makeup", price: "₹12,000", cat: "Bridal Makeup" },
-  { name: "Bridal Airbrush Artistry", price: "₹18,000", cat: "Bridal Makeup" },
   { name: "Signature Royal Maharani Makeup", price: "₹25,000", cat: "Bridal Makeup" },
+  { name: "Engagement / Reception Glamour", price: "₹8,000", cat: "Bridal Makeup" },
+  { name: "Pre-Bridal Glow Package (4 Sessions)", price: "₹12,000", cat: "Bridal Makeup" },
   { name: "Pre-Bridal Full Glow Ritual", price: "₹8,500", cat: "Bridal Makeup" },
-  // Party & Occasion
+
+  // 3. Occasion & Haute Party Makeup
   { name: "Engagement & Roka Makeup", price: "₹4,500", cat: "Party Makeup" },
   { name: "Cocktail / Sangeet Glamour", price: "₹5,500", cat: "Party Makeup" },
   { name: "Haldi & Mehendi Look", price: "₹3,500", cat: "Party Makeup" },
   { name: "Reception Grand Look", price: "₹6,500", cat: "Party Makeup" },
-  // Basic & Day
   { name: "Light Day / Corporate Makeup", price: "₹1,500", cat: "Basic Makeup" },
   { name: "Evening Occasion Glamour", price: "₹2,500", cat: "Basic Makeup" },
   { name: "Matte Natural Look", price: "₹2,000", cat: "Basic Makeup" },
-  // Permanent Makeup (PMU)
-  { name: "Microblading Eyebrows", price: "₹12,000", cat: "PMU" },
-  { name: "Ombré Powder Brows", price: "₹14,000", cat: "PMU" },
-  { name: "Permanent Lip Blush Tint", price: "₹15,000", cat: "PMU" },
-  { name: "Permanent Eyeliner Definition", price: "₹8,000", cat: "PMU" },
-  // Hair & Treatments
-  { name: "Keratin & Nanoplastia Smoothening", price: "₹6,000+", cat: "Hair Care" },
-  { name: "Botox Hair Deep Repair Therapy", price: "₹4,500+", cat: "Hair Care" },
+
+  // 4. Clinical Permanent Makeup (PMU)
+  { name: "Ombre Powder Eyebrows", price: "₹10,000", cat: "Permanent Makeup (PMU)" },
+  { name: "Microblading Feather Brows", price: "₹12,000", cat: "Permanent Makeup (PMU)" },
+  { name: "Permanent Lip Blush & Neutralization", price: "₹8,000", cat: "Permanent Makeup (PMU)" },
+  { name: "Permanent Lip Blush Tint", price: "₹15,000", cat: "Permanent Makeup (PMU)" },
+  { name: "Permanent Eyeliner Definition", price: "₹8,000", cat: "Permanent Makeup (PMU)" },
+
+  // 5. Advanced Hair Trichology & Architecture
+  { name: "Nanoplastia Repair Treatment", price: "₹6,000", cat: "Hair Care & Trichology" },
+  { name: "Brazilian Keratin Smoothing", price: "₹4,500", cat: "Hair Care & Trichology" },
+  { name: "Hair Botox Deep Revival", price: "₹3,500", cat: "Hair Care & Trichology" },
+  { name: "Keratin & Nanoplastia Smoothening", price: "₹6,000+", cat: "Hair Care & Trichology" },
   { name: "Bridal Hair Styling & Updo", price: "₹2,500", cat: "Hair Styling" },
-  { name: "Global Hair Color & Balayage", price: "₹4,000+", cat: "Hair Care" },
-  // Skin & Spa
-  { name: "Hydra-Facial & Derma Glow Treatment", price: "₹3,500", cat: "Skin Care" },
-  { name: "Neelam Classic Academy Program", price: "Consultation", cat: "Academy" },
-  { name: "Other Custom Service", price: "On Consultation", cat: "Custom" },
+  { name: "Global Hair Color & Balayage", price: "₹4,000+", cat: "Hair Care & Trichology" },
+
+  // 6. Derma Radiance & Skin Aesthetics
+  { name: "Hydra-Facial Resurfacing & Derma Glow", price: "₹3,500", cat: "Derma & Skin Care" },
+  { name: "Korean Glass Skin Ritual", price: "₹4,000", cat: "Derma & Skin Care" },
+  { name: "Bridal Full Body Polishing", price: "₹5,500", cat: "Derma & Skin Care" },
+
+  // 7. Academy & Bespoke Consultations
+  { name: "Masterclass Mentorship & PMU Diploma", price: "Admissions Open", cat: "Professional Academy" },
+  { name: "Professional Academy Masterclass", price: "Admissions Open", cat: "Professional Academy" },
+  { name: "Other Custom Service", price: "On Consultation", cat: "Custom & Consultation" },
 ];
 
 const TIME_SLOTS = [
@@ -93,9 +113,11 @@ export default function ServiceBookingModal() {
     pickupLocation?: string;
   } | null>(null);
 
+  const [availableServices, setAvailableServices] = useState(ALL_SERVICES_CATALOG);
+
   // Form Fields
-  const [serviceName, setServiceName] = useState(POPULAR_SERVICES_LIST[0].name);
-  const [servicePrice, setServicePrice] = useState(POPULAR_SERVICES_LIST[0].price);
+  const [serviceName, setServiceName] = useState(ALL_SERVICES_CATALOG[0].name);
+  const [servicePrice, setServicePrice] = useState(ALL_SERVICES_CATALOG[0].price);
   const [clientName, setClientName] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [clientEmail, setClientEmail] = useState("");
@@ -118,13 +140,37 @@ export default function ServiceBookingModal() {
       const detail = customEvent.detail || {};
 
       if (detail.serviceName) {
-        setServiceName(detail.serviceName);
-        if (detail.servicePrice) {
-          setServicePrice(String(detail.servicePrice));
-        } else {
-          const match = POPULAR_SERVICES_LIST.find((s) => s.name === detail.serviceName);
-          setServicePrice(match?.price || "");
-        }
+        const trimmed = detail.serviceName.trim();
+        const matched = ALL_SERVICES_CATALOG.find(
+          (s) => s.name.toLowerCase() === trimmed.toLowerCase()
+        );
+        const resolvedPrice = detail.servicePrice
+          ? String(detail.servicePrice)
+          : matched?.price || "";
+
+        setAvailableServices((prev) => {
+          const exists = prev.some(
+            (s) => s.name.toLowerCase() === trimmed.toLowerCase()
+          );
+          if (exists) {
+            return prev.map((s) =>
+              s.name.toLowerCase() === trimmed.toLowerCase() && resolvedPrice
+                ? { ...s, price: resolvedPrice }
+                : s
+            );
+          }
+          return [
+            {
+              name: trimmed,
+              price: resolvedPrice,
+              cat: detail.categoryName || "Selected Service",
+            },
+            ...prev,
+          ];
+        });
+
+        setServiceName(trimmed);
+        setServicePrice(resolvedPrice);
       }
       setConfirmedBooking(null);
       setIsOpen(true);
@@ -132,6 +178,26 @@ export default function ServiceBookingModal() {
 
     window.addEventListener("open-service-booking", handleOpen);
     return () => window.removeEventListener("open-service-booking", handleOpen);
+  }, []);
+
+  // Listen for query params on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const requested = params.get("book") || params.get("service");
+      if (requested) {
+        const matched = ALL_SERVICES_CATALOG.find(
+          (s) =>
+            s.name.toLowerCase().includes(requested.toLowerCase()) ||
+            s.cat.toLowerCase().includes(requested.toLowerCase())
+        );
+        if (matched) {
+          setServiceName(matched.name);
+          setServicePrice(matched.price);
+          setIsOpen(true);
+        }
+      }
+    }
   }, []);
 
   // Prevent background scroll when open
@@ -159,8 +225,8 @@ export default function ServiceBookingModal() {
 
   const handleServiceChange = (name: string) => {
     setServiceName(name);
-    const found = POPULAR_SERVICES_LIST.find((s) => s.name === name);
-    if (found) {
+    const found = availableServices.find((s) => s.name === name);
+    if (found && found.price) {
       setServicePrice(found.price);
     }
   };
@@ -421,13 +487,16 @@ Please verify and confirm my slot. Thank you!`
                 />
 
                 {/* 1. Selected Service Banner / Dropdown */}
-                <div className="p-4 rounded-2xl bg-[#f8f2ef] border border-[#C9A66B]/35 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label className="text-[11px] font-semibold uppercase tracking-wider text-[#4A1330]">
-                      Service to Book *
-                    </label>
+                <div className="p-4 sm:p-5 rounded-2xl bg-[#f8f2ef] border border-[#C9A66B]/50 shadow-2xs space-y-2.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-[#C9A66B]" />
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-[#4A1330]">
+                        Selected Service to Book *
+                      </label>
+                    </div>
                     {servicePrice && (
-                      <span className="font-mono text-xs font-bold text-[#B76E79] bg-[#FFF9F5] px-2.5 py-0.5 rounded-full border border-[#C9A66B]/30">
+                      <span className="font-mono text-xs font-bold text-[#FFF9F5] bg-[#4A1330] px-3 py-0.5 rounded-full border border-[#C9A66B]/40 shadow-xs shrink-0">
                         {servicePrice}
                       </span>
                     )}
@@ -437,15 +506,15 @@ Please verify and confirm my slot. Thank you!`
                     <select
                       value={serviceName}
                       onChange={(e) => handleServiceChange(e.target.value)}
-                      className="w-full pl-3.5 pr-8 py-2.5 rounded-xl bg-white border border-[#C9A66B]/40 text-[#1d1b19] font-medium text-xs sm:text-sm focus:outline-none focus:border-[#4A1330] cursor-pointer appearance-none"
+                      className="w-full pl-3.5 pr-8 py-2.5 rounded-xl bg-white border border-[#C9A66B]/45 text-[#1d1b19] font-medium text-xs sm:text-sm focus:outline-none focus:border-[#4A1330] cursor-pointer appearance-none shadow-2xs"
                     >
-                      {POPULAR_SERVICES_LIST.map((srv) => (
+                      {availableServices.map((srv) => (
                         <option key={srv.name} value={srv.name}>
-                          {srv.name} — {srv.price}
+                          {srv.name} {srv.price ? `— ${srv.price}` : ""}
                         </option>
                       ))}
                     </select>
-                    <ChevronDown className="w-4 h-4 text-[#7A6470] absolute right-3 top-3 pointer-events-none" />
+                    <ChevronDown className="w-4 h-4 text-[#7A6470] absolute right-3 top-3.5 pointer-events-none" />
                   </div>
                 </div>
 
