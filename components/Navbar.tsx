@@ -60,7 +60,7 @@ export default function Navbar() {
           >
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full overflow-hidden border border-[#C9A66B]/60 bg-black transition-transform group-hover:scale-105 shadow-xs">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Neelam Classic"
                 width={36}
                 height={36}
@@ -182,7 +182,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <div className="relative w-11 h-11 shrink-0 rounded-full overflow-hidden shadow-md border border-[#C9A66B]/60 bg-black">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt="Neelam Classic Logo"
                   width={44}
                   height={44}

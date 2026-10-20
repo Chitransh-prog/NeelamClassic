@@ -19,7 +19,7 @@ export default function Hero({ content }: { content?: Partial<SiteSectionsData["
     "The definitive sanctuary of elevated bridal couture, micro-pigmentation artistry (PMU), and precision cosmetological hair trichology. Every distinguishing ritual is curated directly by Master Neelam Chourasiya.";
   const primaryBtnText = content?.primaryBtnText || "Book an Appointment";
   const secondaryBtnText = content?.secondaryBtnText || "Book with WA";
-  const heroImage = content?.image || "/images/hero-bride.jpg";
+  const heroImage = content?.image || "/images/hero-bride.webp";
   return (
     <section
       id="hero"
@@ -117,7 +117,7 @@ export default function Hero({ content }: { content?: Partial<SiteSectionsData["
                 <div className="absolute bottom-5 left-5 right-5 p-3.5 sm:p-4 rounded-2xl bg-[#2F001B]/95 backdrop-blur-md border border-[#C9A66B]/40 shadow-xl flex items-center gap-3.5">
                   <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border border-[#C9A66B]/70 shadow-md bg-black">
                     <Image
-                      src="/images/logo.png"
+                      src="/images/logo.webp"
                       alt="Neelam Classic Emblem"
                       width={44}
                       height={44}

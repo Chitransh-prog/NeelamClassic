@@ -85,7 +85,7 @@ export async function POST(request: Request) {
       publicId = cldData.public_id;
     } else {
       // Local fallback to public/uploads directory
-      const ext = path.extname(file.name) || (isImage ? ".jpg" : ".mp4");
+      const ext = path.extname(file.name) || (isImage ? ".webp" : ".mp4");
       const safeHash = crypto.randomBytes(12).toString("hex");
       const filename = `media_${Date.now()}_${safeHash}${ext}`;
       const uploadDir = path.join(process.cwd(), "public", "uploads");

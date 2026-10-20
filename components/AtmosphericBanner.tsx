@@ -31,7 +31,7 @@ export default function AtmosphericBanner() {
               <div className="relative vanity-arch p-2.5 bg-[#4A1330]/90 border-[1.5px] border-[#C9A66B] shadow-[0_24px_50px_-10px_rgba(0,0,0,0.6)] overflow-hidden">
                 <div className="relative aspect-[4/5] w-full vanity-arch overflow-hidden bg-[#370c22]">
                   <SafeImage
-                    src="/images/bridal-arch.jpg"
+                    src="/images/bridal-arch.webp"
                     alt="Royal Bridal Transformation"
                     fill
                     sizes="(max-width: 768px) 100vw, 420px"

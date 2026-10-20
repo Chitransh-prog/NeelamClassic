@@ -151,8 +151,10 @@ export default function Gallery() {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.92 }}
-                transition={{ duration: 0.35, delay: index * 0.03 }}
-                onClick={() => openLightbox(index)}
+                onClick={() => {
+                  const actualIndex = filteredItems.findIndex((fi) => fi.id === item.id);
+                  openLightbox(actualIndex >= 0 ? actualIndex : index);
+                }}
                 className="group cursor-pointer relative aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#f3ede9] border border-[#C9A66B]/25 shadow-xs hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
               >
                 <SafeImage

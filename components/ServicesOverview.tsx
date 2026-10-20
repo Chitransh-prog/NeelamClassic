@@ -25,7 +25,7 @@ const PAVILIONS: PavilionCard[] = [
       "HD bridal, airbrush finish, pre-bridal glow, party glam and royal muhurat ceremonies with luxury cosmetic brands.",
     pills: ["4-6 Hours", "All Skin Types", "Studio & On-Site"],
     priceDisplay: "₹15,000",
-    image: "/images/hero-bride.jpg",
+    image: "/images/hero-bride.webp",
   },
   {
     id: "hair-architecture",
@@ -35,7 +35,7 @@ const PAVILIONS: PavilionCard[] = [
       "Nanoplastia, Brazilian keratin infusions, botox hair therapy, Japanese straightening, and bespoke wedding hairstyles.",
     pills: ["2-4 Hours", "Bespoke Cut & Style", "Medical Grade"],
     priceDisplay: "₹2,500",
-    image: "/images/service-hair.jpg",
+    image: "/images/service-hair.webp",
   },
   {
     id: "derma-radiance",
@@ -45,7 +45,7 @@ const PAVILIONS: PavilionCard[] = [
       "Hydra-facial resurfacing, Korean glass skin rituals, bridal body polishing, and clinical anti-aging treatments.",
     pills: ["60-90 Mins", "FDA Approved Actives", "Instant Glow"],
     priceDisplay: "₹1,800",
-    image: "/images/salon-skin-suite.jpg",
+    image: "/images/salon-skin-suite.webp",
   },
   {
     id: "clinical-pmu",
@@ -55,7 +55,7 @@ const PAVILIONS: PavilionCard[] = [
       "Semi-permanent ombre powder brows, microblading, lip blush neutralization, and medical-grade lash line enhancement.",
     pills: ["Semi-Permanent (2-3 Yrs)", "Organic Pigments", "Zero Downtime"],
     priceDisplay: "₹8,000",
-    image: "/images/salon-pmu-treatment.jpg",
+    image: "/images/salon-pmu-treatment.webp",
   },
 ];
 

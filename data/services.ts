@@ -53,7 +53,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 22,
     description: "Custom precision haircuts, advanced textured styling, refreshing washes, and blowouts tailored to your face shape.",
     iconName: "Scissors",
-    image: "/images/cat-haircut.jpg",
+    image: "/images/cat-haircut.webp",
     tag: "Signature",
   },
   {
@@ -62,7 +62,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 7,
     description: "Intense moisture therapies, deep conditioning, and molecular repair treatments for damaged and brittle strands.",
     iconName: "Sparkles",
-    image: "/images/cat-treatment.jpg",
+    image: "/images/cat-treatment.webp",
   },
   {
     id: "scalp-treatment",
@@ -70,7 +70,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 5,
     description: "Anti-dandruff solutions, scalp detox, soothing nourishment, and follicle revitalizing therapies.",
     iconName: "Droplets",
-    image: "/images/cat-scalp.jpg",
+    image: "/images/cat-scalp.webp",
   },
   {
     id: "hair-repair-smoothening",
@@ -78,7 +78,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 14,
     description: "Keratin, Botox, Nanoplastia, and organic smoothening treatments for silky, frizz-free, luminous hair.",
     iconName: "Feather",
-    image: "/images/cat-smoothening.jpg",
+    image: "/images/cat-smoothening.webp",
     tag: "Most Popular",
   },
   {
@@ -87,7 +87,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 17,
     description: "Bridal updos, Hollywood waves, contemporary braids, textured curls, and party hairstyle creations.",
     iconName: "Flame",
-    image: "/images/cat-styling.jpg",
+    image: "/images/cat-styling.webp",
   },
   {
     id: "hair-chemical",
@@ -95,7 +95,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 6,
     description: "Global hair color, Balayage, Ombré, Highlights, and root touch-up with ammonia-free premium formulations.",
     iconName: "Palette",
-    image: "/images/cat-color.jpg",
+    image: "/images/cat-color.webp",
   },
   {
     id: "skin-services",
@@ -103,7 +103,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 23,
     description: "Hydra facials, bridal radiance rituals, anti-aging therapies, D-tan, clean-ups, and glow enhancements.",
     iconName: "HeartPulse",
-    image: "/images/salon-derma-clinic.jpg",
+    image: "/images/salon-derma-clinic.webp",
     tag: "Essential",
   },
   {
@@ -112,7 +112,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 14,
     description: "Luxury body polishes, relaxing wellness massages, waxing rituals, manicure, and pedicure spa pampering.",
     iconName: "Flower2",
-    image: "/images/salon-pedicure-spa.jpg",
+    image: "/images/salon-pedicure-spa.webp",
   },
   {
     id: "makeup",
@@ -120,7 +120,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 19,
     description: "Flawless Bridal, HD, Airbrush, Haldi, Engagement, and Party makeup designed for timeless photography.",
     iconName: "Crown",
-    image: "/images/cat-makeup.jpg",
+    image: "/images/cat-makeup.webp",
     tag: "Speciality",
   },
   {
@@ -129,7 +129,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 8,
     description: "Advanced Microblading, Lip Blush, Eyeliner, and BB Glow permanent enhancements by certified artists.",
     iconName: "Gem",
-    image: "/images/salon-pmu-treatment.jpg",
+    image: "/images/salon-pmu-treatment.webp",
     tag: "Advanced Tech",
   },
 ];
@@ -201,7 +201,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Masterclass in Professional Makeup Artistry",
     duration: "1 to 2 Months",
     mode: "Hands-on Practical Studio",
-    image: "/images/gallery-5.jpg",
+    image: "/images/gallery-5.webp",
     description: "Master bridal, HD, airbrush, festive, and editorial makeup techniques under the direct mentorship of Neelam Chourasiya.",
     highlights: [
       "Skin preparation & undertone theory",
@@ -216,7 +216,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Advanced Hair Designing & Chemical Tech",
     duration: "1 Month",
     mode: "Practical Intensive",
-    image: "/images/cat-styling.jpg",
+    image: "/images/cat-styling.webp",
     description: "From classic scissor techniques to trending balayage, keratin infusions, and bridal hair sculpts.",
     highlights: [
       "Face-shape based haircutting techniques",
@@ -231,7 +231,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Clinical Skin Aesthetics & Facial Therapy",
     duration: "3 to 4 Weeks",
     mode: "Theory + Clinical Practice",
-    image: "/images/cat-facial.jpg",
+    image: "/images/cat-facial.webp",
     description: "Scientific skin diagnosis, acne/pigmentation management, high-tech facials, and anti-aging treatments.",
     highlights: [
       "Dermatological skin anatomy & analysis",
@@ -246,7 +246,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: "Permanent Makeup (PMU) & Microblading",
     duration: "2 to 3 Weeks",
     mode: "Specialized Master Workshop",
-    image: "/images/gallery-3.jpg",
+    image: "/images/gallery-3.webp",
     description: "State-of-the-art semi-permanent cosmetic tattooing including brows, lip blush, and eyeliner artistry.",
     highlights: [
       "Microblading & powder ombré brow mapping",
@@ -307,28 +307,28 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   // Signature Transformations
   {
     id: "gal-1",
-    src: "/images/gallery-1.jpg",
+    src: "/images/gallery-1.webp",
     alt: "Royal Bridal Makeup Look at Neelam Classic Salon",
     title: "Royal Bridal Glamour",
     category: "Bridal",
   },
   {
     id: "gal-2",
-    src: "/images/gallery-2.jpg",
+    src: "/images/gallery-2.webp",
     alt: "HD Party Makeup and Soft Glow Styling",
     title: "HD Luminous Party Finish",
     category: "Makeup",
   },
   {
     id: "gal-3",
-    src: "/images/gallery-3.jpg",
+    src: "/images/gallery-3.webp",
     alt: "Microblading and Precision Eyebrow PMU",
     title: "Microblading Brow Enhancement",
     category: "Permanent",
   },
   {
     id: "gal-4",
-    src: "/images/gallery-4.jpg",
+    src: "/images/gallery-4.webp",
     alt: "Intricate Bridal Hair Bun with Floral Accents",
     title: "Traditional Bridal Updo",
     category: "Hair",
@@ -336,14 +336,14 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   // Authentic Salon Ambience & Floor
   {
     id: "gal-9",
-    src: "/images/salon-ambience-floor.jpg",
+    src: "/images/salon-ambience-floor.webp",
     alt: "Neelam Classic Salon Grand Styling Floor & Wash Stations",
     title: "Grand Styling & Wash Lounge",
     category: "Ambience",
   },
   {
     id: "gal-10",
-    src: "/images/salon-ambience-crest.jpg",
+    src: "/images/salon-ambience-crest.webp",
     alt: "Living Salon Experience with NC Crest & Stylists in Action",
     title: "Signature NC Atelier in Action",
     category: "Ambience",
@@ -351,21 +351,21 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   // Luxury Pedicure & Foot Spa Sanctuary
   {
     id: "gal-11",
-    src: "/images/salon-pedicure-spa.jpg",
+    src: "/images/salon-pedicure-spa.webp",
     alt: "Royal Pedicure & Foot Spa Sanctuary with Plush Armchair",
     title: "Royal Foot Spa & Pedicure Lounge",
     category: "Spa",
   },
   {
     id: "gal-12",
-    src: "/images/salon-pedicure-lounge.jpg",
+    src: "/images/salon-pedicure-lounge.webp",
     alt: "Luxury Reclining Foot Spa Lounge & Polish Display",
     title: "Reclining Foot Spa Sanctuary",
     category: "Spa",
   },
   {
     id: "gal-13",
-    src: "/images/salon-pedicure-chair.jpg",
+    src: "/images/salon-pedicure-chair.webp",
     alt: "Quilted Leather Pedicure Throne with Foot Bath",
     title: "Quilted Leather Pedicure Throne",
     category: "Spa",
@@ -373,14 +373,14 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   // Couture Nail Bar & Extensions
   {
     id: "gal-14",
-    src: "/images/salon-nail-art-bar.jpg",
+    src: "/images/salon-nail-art-bar.webp",
     alt: "Couture Nail Art & UV Gel Extension Bar at Neelam Classic",
     title: "Couture Nail Art & UV Gel Bar",
     category: "Nails",
   },
   {
     id: "gal-15",
-    src: "/images/salon-nail-studio.jpg",
+    src: "/images/salon-nail-studio.webp",
     alt: "Dedicated Gel Lacquer & Nail Care Studio",
     title: "Precision Nail Lacquer Studio",
     category: "Nails",
@@ -388,56 +388,56 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   // Clinical Skincare & PMU Treatment Rooms
   {
     id: "gal-16",
-    src: "/images/salon-skin-suite.jpg",
+    src: "/images/salon-skin-suite.webp",
     alt: "Private Clinical Skincare & Hydra Facial Room",
     title: "Private Clinical Derma Suite",
     category: "Skin",
   },
   {
     id: "gal-17",
-    src: "/images/salon-pmu-treatment.jpg",
+    src: "/images/salon-pmu-treatment.webp",
     alt: "Certified Permanent Makeup (PMU) & Aesthetic Suite",
     title: "Certified PMU & Aesthetic Chamber",
     category: "Permanent",
   },
   {
     id: "gal-18",
-    src: "/images/salon-derma-clinic.jpg",
+    src: "/images/salon-derma-clinic.webp",
     alt: "Advanced Facial & Medi-Spa Treatment Room",
     title: "Medi-Spa & Glow Facial Room",
     category: "Skin",
   },
   {
     id: "gal-19",
-    src: "/images/salon-facial-room.jpg",
+    src: "/images/salon-facial-room.webp",
     alt: "Holistic Facial & Skin Rejuvenation Sanctuary",
     title: "Holistic Skin Rejuvenation Suite",
     category: "Skin",
   },
   {
     id: "gal-20",
-    src: "/images/salon-facial-suite-1.jpg",
+    src: "/images/salon-facial-suite-1.webp",
     alt: "Specialized Aesthetic Skin Therapy Suite",
     title: "Aesthetic Skin Therapy Suite",
     category: "Skin",
   },
   {
     id: "gal-21",
-    src: "/images/salon-facial-suite-2.jpg",
+    src: "/images/salon-facial-suite-2.webp",
     alt: "Aesthetic Derma Suite Procedure Chamber",
     title: "Aesthetic Derma Procedure Chamber",
     category: "Skin",
   },
   {
     id: "gal-22",
-    src: "/images/salon-facial-suite-3.jpg",
+    src: "/images/salon-facial-suite-3.webp",
     alt: "Clinical Skincare & Medi-Facial Suite",
     title: "Clinical Medi-Facial Suite",
     category: "Skin",
   },
   {
     id: "gal-23",
-    src: "/images/salon-facial-suite-4.jpg",
+    src: "/images/salon-facial-suite-4.webp",
     alt: "Cosmetic Facial & Derma Suite Suite",
     title: "Cosmetic Facial & Derma Suite",
     category: "Skin",
@@ -445,28 +445,28 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   // Academy & Additional Transformations
   {
     id: "gal-5",
-    src: "/images/gallery-5.jpg",
+    src: "/images/gallery-5.webp",
     alt: "Neelam Classic Academy Practical Training Session",
     title: "Hands-on Academy Mentorship",
     category: "Academy",
   },
   {
     id: "gal-6",
-    src: "/images/gallery-6.jpg",
+    src: "/images/gallery-6.webp",
     alt: "Radiant Haldi Ceremony Makeup Artistry",
     title: "Sunny Haldi Festive Glow",
     category: "Bridal",
   },
   {
     id: "gal-7",
-    src: "/images/gallery-7.jpg",
+    src: "/images/gallery-7.webp",
     alt: "Permanent Lip Blush Tinting Demonstration",
     title: "Natural Velvet Lip Blush",
     category: "Permanent",
   },
   {
     id: "gal-8",
-    src: "/images/gallery-8.jpg",
+    src: "/images/gallery-8.webp",
     alt: "Luxury Hair Smoothening and Gloss Treatment",
     title: "Lustrous Hair Smoothening",
     category: "Hair",

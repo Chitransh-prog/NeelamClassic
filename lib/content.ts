@@ -129,7 +129,7 @@ export const DEFAULT_SITE_CONTENT: SiteSectionsData = {
       "The definitive sanctuary of elevated bridal couture, micro-pigmentation artistry (PMU), and precision cosmetological hair trichology. Every distinguishing ritual is curated directly by Master Neelam Chourasiya.",
     primaryBtnText: "Book an Appointment",
     secondaryBtnText: "Book with WA",
-    image: "/images/hero-bride.jpg",
+    image: "/images/hero-bride.webp",
     rating: "4.9",
     reviewsCount: "500+ Patron Reviews",
     experienceYears: "15+",
@@ -146,7 +146,7 @@ export const DEFAULT_SITE_CONTENT: SiteSectionsData = {
       "Under the master mentorship of Neelam Chourasiya, each treatment is formulated with clinical precision and luxury artistry.",
     ownerName: "Neelam Chourasiya",
     ownerRole: "Founder & Master Mentor, Neelam Classic",
-    image: "/images/owner.jpg",
+    image: "/images/owner.webp",
     points: [
       "Clinical Bridal Precision with High-Definition Durability",
       "Medical-Grade Master PMU Micro-Pigmentation",
@@ -168,7 +168,7 @@ export const DEFAULT_SITE_CONTENT: SiteSectionsData = {
     title: "Artistry in Motion",
     subtitle: "Watch real brides and client transformations crafted at Neelam Classic.",
     videoUrl: "",
-    posterUrl: "/images/hero-bride.jpg",
+    posterUrl: "/images/hero-bride.webp",
   },
   academy: {
     badge: "ACADEMY ATELIER & CURATED GALLERY",
@@ -218,7 +218,7 @@ export const DEFAULT_SITE_CONTENT: SiteSectionsData = {
     description:
       "The definitive sanctuary of elevated bridal couture, micro-pigmentation artistry (PMU), and precision cosmetological hair trichology.",
     keywords: "Neelam Classic Salon, Bridal Makeup Bhopal, Mandideep, PMU Academy, Luxury Salon",
-    ogImage: "/images/hero-bride.jpg",
+    ogImage: "/images/hero-bride.webp",
   },
 };
 

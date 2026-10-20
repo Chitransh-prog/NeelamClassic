@@ -64,7 +64,7 @@ export const metadata: Metadata = {
       "Premier salon and academy led by Neelam Chourasiya offering 135+ services across Bridal Makeup, PMU, Hair Treatments, and Certified Academy Courses.",
     images: [
       {
-        url: "/images/hero.jpg",
+        url: "/images/hero.webp",
         width: 1200,
         height: 630,
         alt: "Neelam Classic Salon and Academy",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Neelam Classic Salon & Academy",
     description: "135+ Luxury Beauty Services & Professional Academy by Neelam Chourasiya.",
-    images: ["/images/hero.jpg"],
+    images: ["/images/hero.webp"],
   },
   robots: {
     index: true,

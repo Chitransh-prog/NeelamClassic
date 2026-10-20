@@ -59,7 +59,7 @@ export default function CoursesManagerPage() {
     setDescription("");
     setModulesText("");
     setHasCertificate(true);
-    setImage("/images/gallery-5.jpg");
+    setImage("/images/gallery-5.webp");
     setPrice("");
     setModalOpen(true);
   };

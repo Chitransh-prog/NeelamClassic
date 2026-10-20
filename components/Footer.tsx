@@ -70,7 +70,7 @@ export default function Footer() {
             >
               <div className="relative w-12 h-12 shrink-0 rounded-full overflow-hidden shadow-lg border-[1.5px] border-[#C9A66B] bg-black group-hover:scale-105 transition-transform duration-300">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt="Neelam Classic Logo"
                   width={48}
                   height={48}

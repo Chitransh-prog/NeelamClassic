@@ -223,7 +223,7 @@ async function main() {
       description: "Indulge in royal bridal transformations, high-precision permanent makeup (PMU), advanced hair therapies, and master academy training personally curated by Neelam Chourasiya.",
       primaryBtnText: "Book on WhatsApp",
       secondaryBtnText: "Call Salon",
-      image: "/images/hero-bride.jpg",
+      image: "/images/hero-bride.webp",
       rating: "4.9",
       reviewsCount: "500+ Happy Brides & Clients",
       experienceYears: "15+",
@@ -238,7 +238,7 @@ async function main() {
       description2: "Every service is a bespoke ritual crafted with dermatologically safe, premium international formulations and uncompromising hygiene.",
       ownerName: "Neelam Chourasiya",
       ownerRole: "Founder & Master Aesthetician",
-      image: "/images/hero-bride.jpg",
+      image: "/images/hero-bride.webp",
       points: [
         "15+ Years of Industry Leadership & Bridal Mastery",
         "Sterilized, Medical-Grade PMU & Piercing Protocols",
@@ -261,7 +261,7 @@ async function main() {
       title: "Witness the Transformation",
       subtitle: "Watch our real brides, master hair sculpts, and academy students in action.",
       videoUrl: "",
-      posterUrl: "/images/cat-makeup.jpg",
+      posterUrl: "/images/cat-makeup.webp",
     },
     academy: {
       badge: "Empowering Careers",
@@ -309,7 +309,7 @@ async function main() {
       title: "Neelam Classic Salon & Academy | Luxury Bridal Makeup & Academy",
       description: "Premier luxury salon and professional beauty academy curated by Neelam Chourasiya. Royal bridal transformations, HD makeup, PMU, and advanced hair therapies.",
       keywords: "salon, academy, bridal makeup, permanent makeup, hair treatments, beauty parlour, makeup artist",
-      ogImage: "/images/hero-bride.jpg",
+      ogImage: "/images/hero-bride.webp",
     },
   };
 

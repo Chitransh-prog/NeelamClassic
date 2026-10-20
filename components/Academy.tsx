@@ -83,7 +83,7 @@ export default function Academy() {
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm rounded-[24px] overflow-hidden border-[1.5px] border-[#C9A66B]/50 shadow-xl aspect-[4/3] bg-[#2F001B]">
               <SafeImage
-                src="/images/academy-1.jpg"
+                src="/images/academy-1.webp"
                 alt="Neelam Classic Academy Classroom and Training Studio"
                 placeholderTitle="Academy Studio Session"
                 fill

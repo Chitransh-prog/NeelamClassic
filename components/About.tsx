@@ -95,7 +95,7 @@ export default function About() {
               <div className="relative rounded-3xl p-2.5 bg-white border border-[#C9A66B]/40 shadow-[0_20px_45px_-10px_rgba(74,19,48,0.1)] overflow-hidden">
                 <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#f3ede9]">
                   <SafeImage
-                    src="/images/owner.jpg"
+                    src="/images/owner.webp"
                     alt="Neelam Chourasiya - Founder & Master Mentor, Neelam Classic"
                     placeholderTitle="Neelam Chourasiya"
                     fill
