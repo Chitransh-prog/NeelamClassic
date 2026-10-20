@@ -45,7 +45,7 @@ const PAVILIONS: PavilionCard[] = [
       "Hydra-facial resurfacing, Korean glass skin rituals, bridal body polishing, and clinical anti-aging treatments.",
     pills: ["60-90 Mins", "FDA Approved Actives", "Instant Glow"],
     priceDisplay: "₹1,800",
-    image: "/images/service-facial.jpg",
+    image: "/images/salon-skin-suite.jpg",
   },
   {
     id: "clinical-pmu",
@@ -55,7 +55,7 @@ const PAVILIONS: PavilionCard[] = [
       "Semi-permanent ombre powder brows, microblading, lip blush neutralization, and medical-grade lash line enhancement.",
     pills: ["Semi-Permanent (2-3 Yrs)", "Organic Pigments", "Zero Downtime"],
     priceDisplay: "₹8,000",
-    image: "/images/service-pmu.jpg",
+    image: "/images/salon-pmu-treatment.jpg",
   },
 ];
 

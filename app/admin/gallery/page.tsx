@@ -18,7 +18,18 @@ interface GalleryItem {
   isFeatured: boolean;
 }
 
-const CATEGORIES = ["All", "Bridal", "Makeup", "Permanent", "Hair", "Academy"];
+const CATEGORIES = [
+  "All",
+  "Ambience",
+  "Nails",
+  "Spa",
+  "Skin",
+  "Bridal",
+  "Makeup",
+  "Permanent",
+  "Hair",
+  "Academy",
+];
 
 export default function GalleryManagerPage() {
   const [items, setItems] = useState<GalleryItem[]>([]);
@@ -252,7 +263,11 @@ export default function GalleryManagerPage() {
                   <option value="Bridal">Bridal</option>
                   <option value="Makeup">Makeup</option>
                   <option value="Permanent">Permanent (PMU)</option>
+                  <option value="Skin">Skin & Medi-Facial</option>
                   <option value="Hair">Hair</option>
+                  <option value="Nails">Nails & Extensions</option>
+                  <option value="Spa">Pedicure & Foot Spa</option>
+                  <option value="Ambience">Salon Ambience</option>
                   <option value="Academy">Academy</option>
                 </select>
               </div>

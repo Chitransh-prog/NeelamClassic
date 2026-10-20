@@ -42,7 +42,7 @@ export interface GalleryItem {
   src: string;
   alt: string;
   title: string;
-  category: "Bridal" | "Makeup" | "Hair" | "Academy" | "Skin" | "Permanent";
+  category: "Bridal" | "Makeup" | "Hair" | "Academy" | "Skin" | "Permanent" | "Ambience" | "Nails" | "Spa";
 }
 
 // 1. All Salon Categories (Total 135 services across 10 categories)
@@ -103,7 +103,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 23,
     description: "Hydra facials, bridal radiance rituals, anti-aging therapies, D-tan, clean-ups, and glow enhancements.",
     iconName: "HeartPulse",
-    image: "/images/cat-facial.jpg",
+    image: "/images/salon-derma-clinic.jpg",
     tag: "Essential",
   },
   {
@@ -112,7 +112,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 14,
     description: "Luxury body polishes, relaxing wellness massages, waxing rituals, manicure, and pedicure spa pampering.",
     iconName: "Flower2",
-    image: "/images/cat-spa.jpg",
+    image: "/images/salon-pedicure-spa.jpg",
   },
   {
     id: "makeup",
@@ -129,7 +129,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     count: 8,
     description: "Advanced Microblading, Lip Blush, Eyeliner, and BB Glow permanent enhancements by certified artists.",
     iconName: "Gem",
-    image: "/images/cat-pmu.jpg",
+    image: "/images/salon-pmu-treatment.jpg",
     tag: "Advanced Tech",
   },
 ];
@@ -302,8 +302,9 @@ export const TESTIMONIALS: TestimonialItem[] = [
   },
 ];
 
-// 5. Gallery Items (Mapped to user-provided photos in /public/images/)
+// 5. Gallery Items (Curated real salon premises + signature client transformations)
 export const GALLERY_ITEMS: GalleryItem[] = [
+  // Signature Transformations
   {
     id: "gal-1",
     src: "/images/gallery-1.jpg",
@@ -332,6 +333,116 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: "Traditional Bridal Updo",
     category: "Hair",
   },
+  // Authentic Salon Ambience & Floor
+  {
+    id: "gal-9",
+    src: "/images/salon-ambience-floor.jpg",
+    alt: "Neelam Classic Salon Grand Styling Floor & Wash Stations",
+    title: "Grand Styling & Wash Lounge",
+    category: "Ambience",
+  },
+  {
+    id: "gal-10",
+    src: "/images/salon-ambience-crest.jpg",
+    alt: "Living Salon Experience with NC Crest & Stylists in Action",
+    title: "Signature NC Atelier in Action",
+    category: "Ambience",
+  },
+  // Luxury Pedicure & Foot Spa Sanctuary
+  {
+    id: "gal-11",
+    src: "/images/salon-pedicure-spa.jpg",
+    alt: "Royal Pedicure & Foot Spa Sanctuary with Plush Armchair",
+    title: "Royal Foot Spa & Pedicure Lounge",
+    category: "Spa",
+  },
+  {
+    id: "gal-12",
+    src: "/images/salon-pedicure-lounge.jpg",
+    alt: "Luxury Reclining Foot Spa Lounge & Polish Display",
+    title: "Reclining Foot Spa Sanctuary",
+    category: "Spa",
+  },
+  {
+    id: "gal-13",
+    src: "/images/salon-pedicure-chair.jpg",
+    alt: "Quilted Leather Pedicure Throne with Foot Bath",
+    title: "Quilted Leather Pedicure Throne",
+    category: "Spa",
+  },
+  // Couture Nail Bar & Extensions
+  {
+    id: "gal-14",
+    src: "/images/salon-nail-art-bar.jpg",
+    alt: "Couture Nail Art & UV Gel Extension Bar at Neelam Classic",
+    title: "Couture Nail Art & UV Gel Bar",
+    category: "Nails",
+  },
+  {
+    id: "gal-15",
+    src: "/images/salon-nail-studio.jpg",
+    alt: "Dedicated Gel Lacquer & Nail Care Studio",
+    title: "Precision Nail Lacquer Studio",
+    category: "Nails",
+  },
+  // Clinical Skincare & PMU Treatment Rooms
+  {
+    id: "gal-16",
+    src: "/images/salon-skin-suite.jpg",
+    alt: "Private Clinical Skincare & Hydra Facial Room",
+    title: "Private Clinical Derma Suite",
+    category: "Skin",
+  },
+  {
+    id: "gal-17",
+    src: "/images/salon-pmu-treatment.jpg",
+    alt: "Certified Permanent Makeup (PMU) & Aesthetic Suite",
+    title: "Certified PMU & Aesthetic Chamber",
+    category: "Permanent",
+  },
+  {
+    id: "gal-18",
+    src: "/images/salon-derma-clinic.jpg",
+    alt: "Advanced Facial & Medi-Spa Treatment Room",
+    title: "Medi-Spa & Glow Facial Room",
+    category: "Skin",
+  },
+  {
+    id: "gal-19",
+    src: "/images/salon-facial-room.jpg",
+    alt: "Holistic Facial & Skin Rejuvenation Sanctuary",
+    title: "Holistic Skin Rejuvenation Suite",
+    category: "Skin",
+  },
+  {
+    id: "gal-20",
+    src: "/images/salon-facial-suite-1.jpg",
+    alt: "Specialized Aesthetic Skin Therapy Suite",
+    title: "Aesthetic Skin Therapy Suite",
+    category: "Skin",
+  },
+  {
+    id: "gal-21",
+    src: "/images/salon-facial-suite-2.jpg",
+    alt: "Aesthetic Derma Suite Procedure Chamber",
+    title: "Aesthetic Derma Procedure Chamber",
+    category: "Skin",
+  },
+  {
+    id: "gal-22",
+    src: "/images/salon-facial-suite-3.jpg",
+    alt: "Clinical Skincare & Medi-Facial Suite",
+    title: "Clinical Medi-Facial Suite",
+    category: "Skin",
+  },
+  {
+    id: "gal-23",
+    src: "/images/salon-facial-suite-4.jpg",
+    alt: "Cosmetic Facial & Derma Suite Suite",
+    title: "Cosmetic Facial & Derma Suite",
+    category: "Skin",
+  },
+  // Academy & Additional Transformations
   {
     id: "gal-5",
     src: "/images/gallery-5.jpg",
